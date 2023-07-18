@@ -9,6 +9,9 @@ export default defineConfig({
         redirects: true
       },
       redirects: {
-        '/discord': 'https://discord.gg/NMxKTbQcDZ'
+        '/discord': 'https://discord.gg/NMxKTbQcDZ',
+        '/r/github': 'https://github.com/vorlie',
+        '/r/youtube':'https://youtube.com/@vve1_',
+        '/r/ugg':'https://u.gg/lol/profile/eun1/the%20mighty%20dio/overview'
       }
 });
