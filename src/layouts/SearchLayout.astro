@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta property="og:title" content="vorlie">
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="Custom search tab by vve1">
+        <meta property="og:image" content="/icon.png">
+        <meta property="og:url" content="https://vorlie.pl/search">
+        <meta name="description" content="Custom search tab by vve1">
+		<link rel="icon" type="image/svg+xml" href="/icon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="theme-color" content="#896db9">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		--color-background:#1f1f1f;
+		--color-main: #838383;
+		--color-main-background: #77777721;
+		--color-main-background-secondary: #ffffff1c;
+		--color-1: #464646;
+		--color-2: #5f5f5f;
+		--color-3: #7e7e7e;
+		--color-text-secondary: #00C9B1;
+		--color-text:#ffffff;
+		--color-text-hover:#FFFFFF;
+		--border-color: #a1a1a17d;
+		--vve1-color: #896db9;
+	}
+	html {
+		color: var(--color-text);
+		font-family: system-ui, sans-serif;
+		background-color: #111118;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>

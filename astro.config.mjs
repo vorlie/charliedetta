@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
     routes: {
-        '/*': './src/pages/404.astro', 
+        '/*': './src/pages/404.astro',
+        '/search': './src/pages/search.astro'
       },
       experimental: {
         redirects: true

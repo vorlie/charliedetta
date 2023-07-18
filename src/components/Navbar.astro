@@ -5,7 +5,7 @@
         <li class="nav-item"><a href="/">Home</a></li>
         <li class="nav-item"><a href="https://ichigo.vorlie.pl">Ichigo</a></li>
         <li class="nav-item"><a href="https://materialdetta.vorlie.pl">M3 Gen</a></li>
-        <li class="nav-item"><a href="https://search.vorlie.pl">Search</a></li>
+        <li class="nav-item"><a href="/search">Search</a></li>
       </ul>
     </nav>        
     <div class="vve1">
@@ -23,7 +23,10 @@
         float: right;
         overflow: hidden;
         border-radius: 16px;
-        background-color: #ffffff1c;
+        border: 2px solid var(--color-1);
+        background-color: var(--color-main-background);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(5px);
         padding: 1rem;
         max-width: 360px;
     }
@@ -57,7 +60,10 @@
         float: left;
         padding: 1rem;
         border-radius: 16px;
-        background-color: #ffffff1c;
+        border: 2px solid var(--color-1);
+        background-color: var(--color-main-background);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(5px);
 		overflow: hidden;
 		display: flex;
 		text-align: center;
