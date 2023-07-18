@@ -1,50 +1,58 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Navbar from '../components/Navbar.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="Vorlie | vve1">
+	<Navbar />
+	<div class="main">
+		<div class="text">
+		<p class="header-text">Hi. I'm <span class="text-gradient">Charlie</span>, Front-End dev.</p>
+		<p>In free time I play games, such as League of Legends(Mostly league), osu! and watch some movies, shows!</p>
+		<p>Currently learning TypeScript and Astro. React in the far future</p>
+		
+		</div>
+		<div class="buttons">
+			<a style="--accent: rgb(200, 155, 60); --accent-gradient: linear-gradient(45deg, var(--accent), #0397AB 30%, white 60%);" href="https://u.gg/lol/profile/eun1/the%20mighty%20dio/overview">League of Legends</a>
+			<a style="--accent: rgb(255, 0, 0); --accent-gradient: linear-gradient(45deg, var(--accent), #ff8682 30%, white 60%);" href="https://youtube.com/@vve1_">Youtube</a>
+			<a style="--accent: rgb(75, 159, 255); --accent-gradient: linear-gradient(45deg, var(--accent), #ff769f 30%, white 60%);" href="https://github.com/vorlie/">Github</a>
+		</div>
+	</div>
 </Layout>
-
 <style>
-	main {
+	.main{
+		padding: 1rem;
+		max-width: 1000px;
 		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
+		text-align: center;
 	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
+	.text{
+		font-size: 30px;
+	}
+	.header-text{
+		font-size: 40px;
+		font-weight: 600;
+	}
+	.buttons{
+		padding: 1rem;
+		margin: auto;
+		max-width: 310px;
+		border-radius: 16px;
+		background: var(--color-main-background-secondary);
+	}
+	.buttons a{
+		text-decoration: none;
+		border: 10px solid transparent;
+		color: var(--color-text);
+		border-radius: 16px;
+		transition: 0.2s ease;
+	}
+	.buttons a:hover{
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -52,30 +60,5 @@ import Card from '../components/Card.astro';
 		-webkit-text-fill-color: transparent;
 		background-size: 400%;
 		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
 	}
 </style>

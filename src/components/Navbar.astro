@@ -1,0 +1,91 @@
+<astro>
+<div class="bg">
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="https://ichigo.vorlie.pl">Ichigo</a></li>
+        <li class="nav-item"><a href="https://materialdetta.vorlie.pl">MaterialDetta</a></li>
+        <li class="nav-item"><a href="https://search.vorlie.pl">Search</a></li>
+      </ul>
+    </nav>        
+    <div class="vve1">
+        <img src="/f6aaefc9ef09cb8965cd922341341dcf.png" width="40">
+        <p>@vve1</p>
+    </div>
+</div>
+</astro>
+  
+<style>
+    .bg{
+        overflow: hidden;
+    }
+    .navbar {
+        float: right;
+        overflow: hidden;
+        border-radius: 16px;
+        background-color: #ffffff1c;
+        padding: 1rem;
+        max-width: 360px;
+    }
+  
+    .nav-list {
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+  
+    .nav-item {
+        padding: 0.5rem;
+        font-weight: 600;
+		color: var(--vve1-color);
+		font-size: 20px;
+    }
+  
+    .nav-item a {
+        text-decoration: none;
+        color: #e4e4e4;
+        transition: 0.2s ease;
+    }
+    .nav-item a:hover{
+        background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+    }
+    .vve1{
+        float: left;
+        padding: 1rem;
+        border-radius: 16px;
+        background-color: #ffffff1c;
+		overflow: hidden;
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+	}
+    .vve1 img{
+		border-radius: 50%;
+		float: left;
+		margin-right: 15px;
+	}
+	.vve1 p{
+        padding: 0.5rem;
+        margin: auto;
+		font-weight: 600;
+        background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+		float: left;
+		font-size: 20px;
+	}
+    @media (max-width: 569px) {
+        .navbar{
+            float: left;
+            margin-bottom: 8px;
+        }
+    }
+</style>
