@@ -5,7 +5,8 @@ export default defineConfig({
     routes: {
         '/*': './src/pages/404.astro',
         '/search': './src/pages/search.astro',
-        '/oneevv':'./src/pages/oneevv.astro'
+        '/oneevv':'./src/pages/oneevv.astro',
+        '/materialdetta':'./src/pages/materialdetta.astro'
       },
       experimental: {
         redirects: true
