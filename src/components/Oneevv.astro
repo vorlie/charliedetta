@@ -1,0 +1,116 @@
+<astro>
+    <div class="main">
+        <div class="title">
+            <h1><span class="text-gradient">1evv</span> by vve1</h1>
+            <p>A bot made for fun, because why not. Bot was not intended to be public but here we are.</p>
+            <p>Disclaimer: Bot might be not 24/7 online</p>
+            <div class="buttons">
+                <a style="--accent: rgb(75, 219, 255); --accent-gradient: linear-gradient(45deg, var(--accent), #5865f2 30%, white 60%);" href="/r/github/sourcecode">Source Code</a>
+                <a style="--accent: rgb(88, 101, 242); --accent-gradient: linear-gradient(45deg, var(--accent), #EB459E 30%, white 60%);" href="/discord">Discord Server</a>
+                <a style="--accent: rgb(235, 69, 158); --accent-gradient: linear-gradient(45deg, var(--accent), #fd2929 30%, white 60%);" href="/oneevv/invite">Invite 1evv</a>
+            </div>
+        </div>
+        <div class="somedivig">
+            <h1><span class="text-gradient">1evv's</span> Commands</h1>
+            <p> Currently there are 51 commands, 47 are usable by normal users. </p>
+            <img src="https://i.vorlie.pl/r/Discord_fb60e33.png" width="500">
+        </div>
+        <div class="footer">
+            <p>Commit <a id="commitSha"></a></p><p id="commitMessage"></p>
+        </div>
+    </div>
+</astro>
+<script>
+async function getCommitData(repoOwner: string, repoName: string): Promise<{ sha: string, commitUrl: string, commitMessage: string }> {
+  const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
+  const data = await response.json();
+  const commitSha: string = data[0].sha.slice(0, 7);
+  const commitUrl: string = data[0].html_url;
+  const commitMessage: string = data[0].commit.message;
+  return { sha: commitSha, commitUrl, commitMessage };
+}
+
+getCommitData("vorlie", "1evv")
+  .then(({ sha, commitUrl, commitMessage }) => {
+    const commitShaElement = document.getElementById("commitSha") as HTMLAnchorElement;
+    commitShaElement.textContent = sha;
+    commitShaElement.href = commitUrl;
+    const commitMessageElement = document.getElementById("commitMessage") as HTMLAnchorElement;
+    commitMessageElement.textContent = commitMessage;
+  })
+  .catch((error: any) => {
+    console.error(error);
+  });
+</script>
+<style>
+.main{
+    padding: 1%;
+    margin: auto;
+    text-align: center;
+
+    max-width: 1200px;
+}
+h1{
+    font-size: 40px;
+}
+p{
+    font-size: 25px;
+}
+.buttons{
+        margin: auto;
+		padding: 1rem;
+		max-width: 340px;
+		border-radius: 16px;
+		border: 2px solid var(--color-1);
+        background-color: var(--color-main-background);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(5px);
+	}
+.buttons a{
+		text-decoration: none;
+		border: 10px solid transparent;
+		color: var(--color-text);
+		border-radius: 16px;
+		transition: 0.2s ease;
+}
+.buttons a:hover{
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+}
+.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+}
+.footer{
+    gap: 10px;
+    justify-content: center;
+    display: flex;
+}
+.footer p{
+    color: var(--color-1);
+    font-size: 20px;
+}
+#commitSha{
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--color-1);
+    transition: 0.2s ease-in;
+}
+#commitSha:hover{
+    text-decoration: underline;
+    --accent: rgb(153, 0, 255);
+    --commitsha-color: linear-gradient(45deg, var(--accent), #ff0095 30%);
+    background-image: var(--commitsha-color);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+}
+</style>
