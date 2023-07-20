@@ -6,7 +6,8 @@ export default defineConfig({
         '/*': './src/pages/404.astro',
         '/search': './src/pages/search.astro',
         '/oneevv':'./src/pages/oneevv.astro',
-        '/materialdetta':'./src/pages/materialdetta.astro'
+        '/materialdetta':'./src/pages/materialdetta.astro',
+        '/login':'./src/pages/login.astro'
       },
       experimental: {
         redirects: true

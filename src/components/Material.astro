@@ -1,4 +1,11 @@
 <astro>
+  <div class="pre-log">
+    <p>Logged in as:</p>
+    <div class="discord-log">
+      <img id="userAvatar" src="" alt="Avatar" width="50">
+      <p id="userName"></p>
+    </div>
+  </div>
 	<div class="main">
         <h1><span class="text-gradient">Material You</span> Theme Generator</h1>
         <div class="rnd-corn">
@@ -26,8 +33,71 @@
     </div>
 </astro>
 <script>
-    import ColorThief from 'colorthief';
-    
+import ColorThief from 'colorthief';
+    window.onload = () => {
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+      let accessToken = fragment.get('access_token') as string;
+      let tokenType = fragment.get('token_type') as string;
+
+      if (!accessToken) {
+        
+        const storedAccessToken = localStorage.getItem('accessToken');
+        const storedTokenType = localStorage.getItem('tokenType');
+
+        if (!storedAccessToken || !storedTokenType) {
+          window.location.href = '/login';
+          return;
+        }
+
+        accessToken = storedAccessToken;
+        tokenType = storedTokenType;
+      } else {
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('tokenType', tokenType);
+      }
+
+      fetch('https://discord.com/api/users/@me', {
+        headers: {
+          Authorization: `${tokenType} ${accessToken}`,
+        },
+      })
+        .then((result) => result.json())
+        .then(async (response) => {
+          const { username, avatar, id } = response;
+          const nameElement = document.getElementById('userName');
+          const avatarElement = document.getElementById('userAvatar') as HTMLImageElement;
+
+          if (nameElement && avatarElement) {
+            nameElement.innerText = ` ${username}`;
+            const avatarUrl = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+            handleUserAvatar(avatarUrl);
+          }
+        })
+        .catch(console.error);
+        
+    };
+  
+    function handleUserAvatar(avatarUrl: string): void {
+      const avatarElement = document.getElementById('userAvatar') as HTMLImageElement;
+      avatarElement.src = avatarUrl; 
+      const img = new Image();
+      img.onload = function () {
+        const colorThief = new ColorThief();
+        const dominantColor = colorThief.getColor(img);
+        const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
+        localStorage.setItem('avatarColor', hexColor); 
+        updateColors(hexColor);
+      };
+      
+      fetch(avatarUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const objectURL = URL.createObjectURL(blob);
+          img.src = objectURL; 
+        })
+        .catch(error => console.error('Error downloading image:', error));
+    }
+
     function handleFileInputChange(event: Event): void {
       const file = (event.target as HTMLInputElement)?.files?.[0];
       const reader = new FileReader();
@@ -83,7 +153,7 @@
         (document.getElementById('hexColorInput') as HTMLInputElement).value = hexColor;
       }
     }
-    
+
     function copyToClipboard(text: string): void {
       const textarea = document.createElement('textarea');
       textarea.value = text;
@@ -124,24 +194,63 @@
         
 </script>
 <style>
-    .main{
-        padding: 2%;
-        margin: 200px auto 10px auto;
-        max-width: 700px;
-        background: var(--color-background);
-        border-radius: 20px;
-    }
+  .pre-log{
+    align-items: center;
+    align-content: center;
+    display: flex;
+    border-radius: 16px;
+    border: 2px solid var(--color-1);
+    background-color: var(--color-main-background);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    margin: auto;
+    max-width: 700px;
+  }
+  .pre-log p{
+    margin: auto 20px auto 10px;
+    font-size: 30px;
+  }
+  .discord-log{
+    padding: 1rem;
+    border-radius: 16px;
+    border: 2px solid var(--color-1);
+    background-color: var(--color-main-background);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(5px);
+    display: inline-block;
+    max-width: 700px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    align-content: left;
+    text-align: left;
+
+  }
+  .discord-log img{
+    border-radius: 50%;
+    float: left;
+    margin-right: 15px;
+  }
+  .main{
+    padding: 2%;
+    margin: 20px auto 10px auto;
+    max-width: 700px;
+    background: var(--color-background);
+    border-radius: 20px;
+  }
 	h1 {
 		font-size: 2.5rem;
 		font-weight: 800;
 		margin: auto;
-        text-align: center;
+    text-align: center;
 	}
-    .rnd-corn{
-        padding: 1%;
-        background: var(--rn-background-color);
-        border-radius: 20px;
-    }
+  .rnd-corn{
+    padding: 1%;
+    background: var(--rn-background-color);
+    border-radius: 20px;
+  }
 	.text-gradient {
 		background-image: var(--accent-gradient);
 		-webkit-background-clip: text;
@@ -221,30 +330,30 @@
 	#clients:hover{
 		cursor: pointer;
 	}
-    .footer{
-        gap: 10px;
-        justify-content: center;
-        display: flex;
-    }
-    .footer p{
-        color: var(--color-1);
-        font-size: 20px;
-    }
-    #commitSha{
-        font-weight: 600;
-        font-size: 20px;
-        text-decoration: none;
-        color: var(--color-1);
-        transition: 0.2s ease-in;
-    }
-    #commitSha:hover{
-        text-decoration: underline;
-        --accent: rgb(153, 0, 255);
-        --commitsha-color: linear-gradient(45deg, var(--accent), #ff0095 30%);
-        background-image: var(--commitsha-color);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 400%;
-        background-position: 0%;
-    }
+  .footer{
+    gap: 10px;
+    justify-content: center;
+    display: flex;
+  }
+  .footer p{
+    color: var(--color-1);
+    font-size: 20px;
+  }
+  #commitSha{
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--color-1);
+    transition: 0.2s ease-in;
+  }
+  #commitSha:hover{
+    text-decoration: underline;
+    --accent: rgb(153, 0, 255);
+    --commitsha-color: linear-gradient(45deg, var(--accent), #ff0095 30%);
+    background-image: var(--commitsha-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
 </style>
