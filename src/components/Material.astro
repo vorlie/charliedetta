@@ -34,49 +34,33 @@
 </astro>
 <script>
 import ColorThief from 'colorthief';
-    window.onload = () => {
-      const fragment = new URLSearchParams(window.location.hash.slice(1));
-      let accessToken = fragment.get('access_token') as string;
-      let tokenType = fragment.get('token_type') as string;
+async function fetchUserData() {
+  const response = await fetch('/api/user', {
+    headers: {
+      Authorization: 'Bearer YOUR_ACCESS_TOKEN',
+    },
+  });
+  
+  if (response.ok) {
+      // Retrieve the query parameters from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+      const avatar = urlParams.get('avatar');
+      const user_id = urlParams.get('user_id');
 
-      if (!accessToken) {
-        
-        const storedAccessToken = localStorage.getItem('accessToken');
-        const storedTokenType = localStorage.getItem('tokenType');
+      // Use the extracted parameters in your code
+      // For example, you can update the UI with the retrieved information
+      (document.getElementById('userName') as HTMLSpanElement).innerText = ` ${username}`;
+      const avatarUrl = `https://cdn.discordapp.com/avatars/${user_id}/${avatar}.jpg`;
+      handleUserAvatar(avatarUrl);
+  } else {
+    // Handle errors if the request fails
+      console.error('Failed to fetch user data');
+  }
+}
 
-
-        if (!storedAccessToken || !storedTokenType) {
-          window.location.href = '/login';
-          return;
-        }
-
-        accessToken = storedAccessToken;
-        tokenType = storedTokenType;
-      } else {
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('tokenType', tokenType);
-      }
-
-      fetch('https://discord.com/api/users/@me', {
-        headers: {
-          Authorization: `${tokenType} ${accessToken}`,
-        },
-      })
-        .then((result) => result.json())
-        .then(async (response) => {
-          const { username, avatar, id } = response;
-          const nameElement = document.getElementById('userName');
-          const avatarElement = document.getElementById('userAvatar') as HTMLImageElement;
-
-          if (nameElement && avatarElement) {
-            nameElement.innerText = ` ${username}`;
-            const avatarUrl = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
-            handleUserAvatar(avatarUrl);
-          }
-        })
-        .catch(console.error);
-        window.location.hash = '';
-    };
+// Call the fetchUserData function when the page loads
+window.onload = fetchUserData;
   
     function handleUserAvatar(avatarUrl: string): void {
       const avatarElement = document.getElementById('userAvatar') as HTMLImageElement;
