@@ -35,14 +35,6 @@
 <script>
 import ColorThief from 'colorthief';
 async function fetchUserData() {
-  const response = await fetch('/api/user', {
-    headers: {
-      Authorization: 'Bearer YOUR_ACCESS_TOKEN',
-    },
-  });
-  
-  if (response.ok) {
-      // Retrieve the query parameters from the URL
       const urlParams = new URLSearchParams(window.location.search);
       const username = urlParams.get('username');
       const avatar = urlParams.get('avatar');
@@ -53,10 +45,6 @@ async function fetchUserData() {
       (document.getElementById('userName') as HTMLSpanElement).innerText = ` ${username}`;
       const avatarUrl = `https://cdn.discordapp.com/avatars/${user_id}/${avatar}.jpg`;
       handleUserAvatar(avatarUrl);
-  } else {
-    // Handle errors if the request fails
-      console.error('Failed to fetch user data');
-  }
 }
 
 // Call the fetchUserData function when the page loads
