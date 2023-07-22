@@ -48,9 +48,14 @@ async function fetchUserData() {
 
     if (!username || !avatar || !user_id) {
       // Redirect user to the login page if data not found in localStorage
-      window.location.href = '/login';
+      window.location.href = 'login.html';
       return;
     }
+  } else {
+    // Save the retrieved data to local storage
+    localStorage.setItem('username', username);
+    localStorage.setItem('avatar', avatar);
+    localStorage.setItem('user_id', user_id);
   }
     
 
