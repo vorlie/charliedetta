@@ -36,20 +36,23 @@
 import ColorThief from 'colorthief';
 async function fetchUserData() {
   const urlParams = new URLSearchParams(window.location.search);
-  const username = urlParams.get('username');
-  const avatar = urlParams.get('avatar');
-  const user_id = urlParams.get('user_id');
+  let username = urlParams.get('username');
+  let avatar = urlParams.get('avatar');
+  let user_id = urlParams.get('user_id');
 
   if (!username || !avatar || !user_id) {
-    // Redirect user to the login page
-    window.location.href = '/login';
-    return;
-  }
+    // Retrieve data from local storage if params not available
+    username = localStorage.getItem('username');
+    avatar = localStorage.getItem('avatar');
+    user_id = localStorage.getItem('user_id');
 
-    // Save the params data to local storage
-  localStorage.setItem('username', username);
-  localStorage.setItem('avatar', avatar);
-  localStorage.setItem('user_id', user_id);
+    if (!username || !avatar || !user_id) {
+      // Redirect user to the login page if data not found in localStorage
+      window.location.href = 'login.html';
+      return;
+    }
+  }
+    
 
   // Use the extracted parameters in your code
   // For example, you can update the UI with the retrieved information
