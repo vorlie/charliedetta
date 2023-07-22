@@ -46,6 +46,11 @@ async function fetchUserData() {
     return;
   }
 
+    // Save the params data to local storage
+  localStorage.setItem('username', username);
+  localStorage.setItem('avatar', avatar);
+  localStorage.setItem('user_id', user_id);
+
   // Use the extracted parameters in your code
   // For example, you can update the UI with the retrieved information
   (document.getElementById('userName') as HTMLSpanElement).innerText = ` ${username}`;
