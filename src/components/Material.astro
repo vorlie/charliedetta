@@ -48,7 +48,7 @@ async function fetchUserData() {
 
     if (!username || !avatar || !user_id) {
       // Redirect user to the login page if data not found in localStorage
-      window.location.href = 'login.html';
+      window.location.href = '/login';
       return;
     }
   } else {
