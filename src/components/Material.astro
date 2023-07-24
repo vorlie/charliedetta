@@ -26,6 +26,10 @@
                 </div>
             </div>
         </div>
+        <div class="disclaimer">
+          <p>It extracts the dominant color from your avatar or the image you provided.</p>
+          <p>It's your browser that does the magic, not server. Nothing is collected.</p>
+        </div>
 	</div>
     <div class="footer">
         <p>Commit <a href="#" id="commitSha"></a></p>
@@ -41,35 +45,28 @@ async function fetchUserData() {
   let user_id = urlParams.get('user_id');
 
   if (!username || !avatar || !user_id) {
-    // Retrieve data from local storage if params not available
     username = localStorage.getItem('username');
     avatar = localStorage.getItem('avatar');
     user_id = localStorage.getItem('user_id');
 
     if (!username || !avatar || !user_id) {
-      // Redirect user to the login page if data not found in localStorage
       window.location.href = '/login';
       return;
     }
   } else {
-    // Save the retrieved data to local storage
+
     localStorage.setItem('username', username);
     localStorage.setItem('avatar', avatar);
     localStorage.setItem('user_id', user_id);
   }
-    
 
-  // Use the extracted parameters in your code
-  // For example, you can update the UI with the retrieved information
   (document.getElementById('userName') as HTMLSpanElement).innerText = ` ${username}`;
   const avatarUrl = `https://cdn.discordapp.com/avatars/${user_id}/${avatar}.jpg`;
   handleUserAvatar(avatarUrl);
 }
 
-
-// Call the fetchUserData function when the page loads
 window.onload = fetchUserData;
-  
+
     function handleUserAvatar(avatarUrl: string): void {
       const avatarElement = document.getElementById('userAvatar') as HTMLImageElement;
       avatarElement.src = avatarUrl; 
@@ -242,7 +239,7 @@ window.onload = fetchUserData;
   .rnd-corn{
     padding: 1%;
     background: var(--rn-background-color);
-    border-radius: 20px;
+    border-radius: 10px;
   }
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -254,14 +251,14 @@ window.onload = fetchUserData;
 
 	.pickers{
 		margin: auto;
-    	padding: 2%;
+    padding: 2%;
 		background-color: var(--rn-background-color);
 		border-radius: 10px;
 		max-width: 30ch;
 	}
 	.file-image-title{
 		margin: 5px auto 15px auto;
-        text-align: center;
+    text-align: center;
 		font-size: 1.5rem;
 		font-weight: 700;
 	}
@@ -317,12 +314,19 @@ window.onload = fetchUserData;
 		margin-top: 5px;
 		color: var(--text-color);
 		border-radius: 5px;
-		background: var(--rn-background-color);
+		background: var(--color-background);
 		border: 2px solid transparent;
 	}
 	#clients:hover{
 		cursor: pointer;
 	}
+  .disclaimer{
+    margin-top: 5px;
+    padding: 1%;
+    background: var(--rn-background-color-3);
+    border-radius: 10px;
+    text-align: center;
+  }
   .footer{
     gap: 10px;
     justify-content: center;
