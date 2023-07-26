@@ -8,22 +8,25 @@
     </div>
   </div>
 	<div class="main">
+    <p class="file-image-title">Color from Image</p>
         <div class="rnd-corn">
-            <p class="file-image-title">Color from Image</p>
             <div class="pickers">
-                <div class="file-image">
-                    <input type="file" id="fileInput" class="file-input" accept="image/*">
-                        <label for="fileInput" class="custom-button">Choose an image</label>
-                </div>
-                    <input type="text" id="hexColorInput" name="hex-color" placeholder="#ff0000">
-                    <button id="generate">Generate & Copy</button>
+              <div id="drop-area" >
+                <p>Drag and drop image</p>
+              </div>
+              <label class="input-button" for="file-picker">Or pick an image</label>
+              <input id="file-picker" type="file">
+              <div class="gen-hex">
+                <input type="text" id="hexColorInput" name="hex-color" placeholder="#ff0000">
+                <button id="generate">Generate & Copy</button>
                 <div class="client-dropdown">
-                    <select id="clients">
+                  <select id="clients">
                         <option value="vendetta">Vendetta</option>
                         <option value="vencord">Vencord</option>
                         <option value="aliucord">Aliucord</option>
-                    </select>
+                  </select>
                 </div>
+              </div>
             </div>
         </div>
 	</div>
@@ -86,25 +89,49 @@ window.onload = fetchUserData;
 
     function handleFileInputChange(event: Event): void {
       const file = (event.target as HTMLInputElement)?.files?.[0];
-      const reader = new FileReader();
+      processFile(file);
+    }
+
+    function handleDrop(event: DragEvent): void {
+      event.preventDefault();
+      
+      const files = event.dataTransfer?.files;
+      const file = files?.[0];
+      const fileName = file?.name;
+      const dropArea = document.getElementById('drop-area') as HTMLInputElement;
+      dropArea.innerText = `File: ${fileName}`;
+      processFile(file);
+    }
     
+    function processFile(file: File | undefined): void {
       if (file) {
+        const reader = new FileReader();
         reader.onload = function (e) {
           const img = new Image();
           img.onload = function () {
             const colorThief = new ColorThief();
             const dominantColor = colorThief.getColor(img);
             const hexColor = rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
-    
+
             updateColors(hexColor);
           };
-    
-          img.src = (e?.target as FileReader)?.result as string;
+
+          img.src = e?.target?.result as string;
         };
-    
+
         reader.readAsDataURL(file);
       }
     }
+
+    function handleDragOver(event: DragEvent): void {
+      event.preventDefault();
+    }
+
+    const dropArea = document.getElementById('drop-area') as HTMLInputElement;
+
+
+    dropArea.addEventListener('dragover', handleDragOver);
+    dropArea.addEventListener('drop', handleDrop);
     
     function generateColors(): void {
       const hexColor = (document.getElementById('hexColorInput') as HTMLInputElement).value;
@@ -153,7 +180,7 @@ window.onload = fetchUserData;
       alert('Link copied to clipboard!');
     }
     
-    document.getElementById('fileInput')?.addEventListener('change', handleFileInputChange);
+    document.getElementById('file-picker')?.addEventListener('change', handleFileInputChange);
     document.getElementById('generate')?.addEventListener('click', generateColors);
     
     
@@ -220,7 +247,7 @@ window.onload = fetchUserData;
     margin-right: 15px;
   }
   .main{
-    padding: 2%;
+    padding: 1%;
     margin: 20px auto 10px auto;
     max-width: 700px;
     background: var(--color-background);
@@ -250,7 +277,6 @@ window.onload = fetchUserData;
     padding: 2%;
 		background-color: var(--rn-background-color);
 		border-radius: 10px;
-		max-width: 30ch;
 	}
 	.file-image-title{
 		margin: 5px auto 15px auto;
@@ -258,56 +284,73 @@ window.onload = fetchUserData;
 		font-size: 1.5rem;
 		font-weight: 700;
 	}
-	.file-image{
-		background: var(--rn-background-color);
-		padding: 1%;
-		width: 200px;
-		float: left;
-		text-align: center;
-		border-radius: 5px;
-	}
-	.file-image:hover{
-		background: var(--rn-background-color-2);
+  #drop-area{
+    border-radius: 16px;
+    height: 100px; 
+    border: 2px dashed #aaa; 
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in;
+    margin-bottom: 10px;
+  }
+  #drop-area:hover{
+    background: var(--rn-background-color);
+  }
+  .input-button{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 16px;
+    height: 50px; 
+    border: 2px dashed #aaa; 
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in;
+  }
+	.input-button:hover{
+    background: var(--rn-background-color-2);
 		cursor: pointer;
 	}
-	.file-input {
-		position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 0;
-		cursor: pointer;
-	}
-	.custom-button:hover{
-		cursor: pointer;
-	}
+  input[type="file"] {
+    display: none;
+  }
+  .gen-hex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
 	#hexColorInput{
 		padding: 1%;
 		color: var(--text-color);
 		background: var(--rn-background-color);
 		border: 2px solid transparent;
 		border-radius: 5px;
-		margin-top: 5px;
-		width: 89px;
+    width: 17.4%;
 	}
 	#hexColorInput:focus{
 		border: 2px solid transparent;
 		outline: none;
 	}
 	#generate{
-		margin-top: 5px;
 		padding: 1%;
 		color: var(--text-color);
 		background: var(--rn-background-color);
 		border: 2px solid transparent;
 		border-radius: 5px;
-		width: 130px;
+    width: 20%;
 	}
 	#generate:hover{
 		background: var(--rn-background-color-2);
 		cursor: pointer;
 	}
 	#clients{
-		margin-top: 5px;
+    padding: 6.5px;
 		color: var(--text-color);
 		border-radius: 5px;
 		background: var(--color-background);
@@ -343,4 +386,13 @@ window.onload = fetchUserData;
     background-size: 400%;
     background-position: 0%;
   }
+
+
+@media only screen and (max-width: 569px) {
+  .gen-hex{
+    align-items: center;
+    flex-direction: column;
+
+  }
+}
 </style>
