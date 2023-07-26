@@ -16,6 +16,7 @@
               </div>
               <label class="input-button" for="file-picker">Or pick an image</label>
               <input id="file-picker" type="file">
+              <p id="selected-file-text"></p>
               <div class="gen-hex">
                 <input type="text" id="hexColorInput" name="hex-color" placeholder="#ff0000">
                 <button id="generate">Generate & Copy</button>
@@ -89,6 +90,9 @@ window.onload = fetchUserData;
 
     function handleFileInputChange(event: Event): void {
       const file = (event.target as HTMLInputElement)?.files?.[0];
+      const fileName = file?.name;
+      const dropArea = document.getElementById('selected-file-text') as HTMLInputElement;
+      dropArea.innerText = `(Picked) File: ${fileName}`;
       processFile(file);
     }
 
@@ -98,8 +102,8 @@ window.onload = fetchUserData;
       const files = event.dataTransfer?.files;
       const file = files?.[0];
       const fileName = file?.name;
-      const dropArea = document.getElementById('drop-area') as HTMLInputElement;
-      dropArea.innerText = `File: ${fileName}`;
+      const dropArea = document.getElementById('selected-file-text') as HTMLInputElement;
+      dropArea.innerText = `(Drag&Drop) File: ${fileName}`;
       processFile(file);
     }
     
@@ -318,6 +322,11 @@ window.onload = fetchUserData;
 	}
   input[type="file"] {
     display: none;
+  }
+  #selected-file-text{
+    text-align: center;
+    font-weight: 700;
+    margin: 0px auto 5px auto;
   }
   .gen-hex{
     display: flex;
