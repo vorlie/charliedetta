@@ -7,7 +7,13 @@
               </svg>Login with Discord</a>
         </div>
         <div class="nologin">
-            <a class="no-dc-login" href="/nodc-materialdetta">Or access the site without logging in</a>
+            <b><a class="no-dc-login" href="/nodc-materialdetta">Or access the site without logging in</a></b>
+        </div>
+        <div class="footer">
+            <p>If you want to use your avatar to generate a theme, then login with discord.
+                <br>Page content does not change in both, 
+                <br><b><a href="/nodc-materialdetta">https://vorlie.pl/nodc-materialdetta</a></b> and <b><a href="/materialdetta">https://vorlie.pl/materialdetta</a></b>.
+            </p>
         </div>
    </div>
 </astro>
@@ -33,6 +39,15 @@
         align-content: center;
         display: flex;
         text-decoration: none;
+    }
+    .footer{
+        gap: 10px;
+        justify-content: center;
+        display: flex;
+    }
+    .footer p,a{
+        color: var(--color-1);
+        font-size: 20px;
     }
     a{
         transition: 0.2s ease-in-out;
