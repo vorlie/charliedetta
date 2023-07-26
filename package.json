@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@material/material-color-utilities": "^0.2.7",
     "astro": "^2.8.3",
     "colorthief": "^2.4.0"
   }
