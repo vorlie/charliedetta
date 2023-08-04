@@ -13,7 +13,7 @@
         <div class="somedivig">
             <h1><span class="text-gradient">1evv's</span> Commands</h1>
             <p> Currently there are 51 commands, 47 are usable by normal users. </p>
-            <img src="https://i.vorlie.pl/r/Discord_fb60e33.png" width="500">
+            <img src="https://i.vorlie.pl/r/Discord_fb60e33.png">
         </div>
         <div class="footer">
             <p>Commit <a id="commitSha"></a></p><p id="commitMessage"></p>
@@ -56,6 +56,7 @@ h1{
 p{
     font-size: 25px;
 }
+
 .buttons{
         margin: auto;
 		padding: 1rem;
@@ -112,5 +113,14 @@ p{
 	-webkit-text-fill-color: transparent;
     background-size: 400%;
     background-position: 0%;
+}
+
+.somedivig img{
+    width: 500px;
+}
+@media (max-width: 569px) {
+    .somedivig img{
+    width: 350px;
+}
 }
 </style>
