@@ -59,6 +59,13 @@
     }
 
     setInterval(updateClock, 1000);
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const elementToFocus = document.getElementById('search-input');
+    if (elementToFocus) {
+        elementToFocus.focus();
+    }
+    });
 </script>
 <style>
 #clock {
