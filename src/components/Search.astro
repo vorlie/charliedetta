@@ -61,9 +61,13 @@
     setInterval(updateClock, 1000);
 
     document.addEventListener('DOMContentLoaded', () => {
-    const elementToFocus = document.getElementById('search-input');
-    if (elementToFocus) {
-        elementToFocus.focus();
+    const virtualClickElement = document.getElementById('search-input');
+    if (virtualClickElement) {
+        virtualClickElement.addEventListener('focus', () => {
+        // Perform actions when the element receives focus
+        // This can include simulating a click event or triggering other events
+        });
+        virtualClickElement.focus();
     }
     });
 </script>
