@@ -9,12 +9,19 @@
     </nav>        
     <div class="vorlie">
         <img src="https://cdn.discordapp.com/avatars/614807913302851594/938ee6acdbe536e8604100336bc98cdf.webp" width="40">
-        <p>@vorlie</p>
+        <p class="displayname">LotusLoL</p>
+        <p class="username">@vorlie</p>
     </div>
 </div>
 </astro>
   
 <style>
+    .username{
+        color: #5c5ca09f;
+        margin: auto;
+		font-weight: 600;
+        font-size: 20px;
+    }
     .bg{
         overflow: hidden;
     }
@@ -73,7 +80,7 @@
 		float: left;
 		margin-right: 15px;
 	}
-	.vorlie p{
+	.vorlie .displayname{
         padding: 0.5rem;
         margin: auto;
 		font-weight: 600;
@@ -82,7 +89,7 @@
 		-webkit-text-fill-color: transparent;
 		background-size: 400%;
 		background-position: 0%;
-		float: left;
+        float: left;
 		font-size: 20px;
 	}
     @media (max-width: 569px) {
