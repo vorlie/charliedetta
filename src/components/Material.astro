@@ -31,10 +31,6 @@
       </div>
     </div>
 </div>
-<div class="footer">
-  <p>Commit <a href="#" id="commitSha"></a></p>
-  <p id="commitMessage"></p>
-</div>
 </astro>
 <script>
 import ColorThief from 'colorthief';
@@ -203,27 +199,6 @@ function showCopiedAlert(): void {
     
 document.getElementById('file-picker')?.addEventListener('change', handleFileInputChange);
 document.getElementById('generate')?.addEventListener('click', generateColors);
-
-async function getCommitData(repoOwner: string, repoName: string): Promise<{ sha: string, commitUrl: string, commitMessage: string }> {
-  const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`);
-  const data = await response.json();
-  const commitSha: string = data[0].sha.slice(0, 7);
-  const commitUrl: string = data[0].html_url;
-  const commitMessage: string = data[0].commit.message;
-  return { sha: commitSha, commitUrl, commitMessage };
-}
-    
-getCommitData("vorlie", "charliedetta")
-  .then(({ sha, commitUrl, commitMessage }) => {
-    const commitShaElement = document.getElementById("commitSha") as HTMLAnchorElement;
-    commitShaElement.textContent = sha;
-    commitShaElement.href = commitUrl;
-    const commitMessageElement = document.getElementById("commitMessage") as HTMLAnchorElement;
-    commitMessageElement.textContent = commitMessage;
-  })
-  .catch((error: any) => {
-    console.error(error);
-});
         
 </script>
 <style>
@@ -386,33 +361,6 @@ input[type="file"] {
 }
 #clients:hover{
 	cursor: pointer;
-}
-
-.footer{
-  gap: 10px;
-  justify-content: center;
-  display: flex;
-}
-.footer p{
-  color: var(--color-1);
-  font-size: 20px;
-}
-#commitSha{
-  font-weight: 600;
-  font-size: 20px;
-  text-decoration: none;
-  color: var(--color-1);
-  transition: 0.2s ease-in;
-}
-#commitSha:hover{
-  text-decoration: underline;
-  --accent: rgb(153, 0, 255);    
-  --commitsha-color: linear-gradient(45deg, var(--accent), #ff0095 30%);
-  background-image: var(--commitsha-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 400%;
-  background-position: 0%;
 }
 
 @media only screen and (max-width: 569px) {

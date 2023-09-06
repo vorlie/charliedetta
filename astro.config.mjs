@@ -7,7 +7,8 @@ export default defineConfig({
         '/search': './src/pages/search.astro',
         '/materialdetta':'./src/pages/materialdetta.astro',
         '/nodc-materialdetta':'./src/pages/nodc-materialdetta.astro',
-        '/login':'./src/pages/login.astro'
+        '/login':'./src/pages/login.astro',
+        '/darling-in-the-franxx': './src/pages/darling-in-the-franxx.astro'
       },
       experimental: {
         redirects: true
