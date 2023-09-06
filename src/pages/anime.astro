@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 ---
 
-<Layout title="Anime list" >
+<Layout title="Lista Anime" >
     <Navbar ></Navbar>
     <div class="main">
-        <h1>Lista anime</h1>
+        <h1>Lista Anime</h1>
         <div class="btn">
-            <button class="buttons">Charlotte</button>
-            <button class="buttons">Darling in the Franxx</button>
+            <button class="buttons" onclick="window.location.href='/charlotte';">Charlotte</button>
+            <button class="buttons" onclick="window.location.href='/darling-in-the-franxx';">Darling in the Franxx</button>
         </div>
     </div>
 </Layout>
