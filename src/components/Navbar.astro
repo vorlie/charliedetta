@@ -8,9 +8,14 @@
       </ul>
     </nav>        
     <div class="vorlie">
-        <img src="https://cdn.discordapp.com/avatars/614807913302851594/0c3eb4ab7328a70a3c1cabe7af1e316d.webp" width="40">
-        <p class="displayname">LotusLoL</p>
-        <p class="username">@vorlie</p>
+        <iframe
+        title="Discord user embed"
+        width="340"
+        height="72"
+        frameborder="0"
+        sandbox="allow-scripts"
+        src="https://widgets.vendicated.dev/user?id=614807913302851594&theme=dark&banner=false&full-banner=false&rounded-corners=true&discord-icon=false&badges=true&guess-nitro=false&background-color=%23191926&foreground-color=%23e4e4e4"
+    ></iframe>
     </div>
 </div>
 </astro>
@@ -28,9 +33,9 @@
     .navbar {
         float: right;
         overflow: hidden;
-        border-radius: 16px;
+        border-radius: 0.8rem;
         border: 2px solid var(--color-1);
-        background-color: var(--color-main-background);
+        background-color: #191926;
         -webkit-backdrop-filter: blur(40px);
         backdrop-filter: blur(5px);
         padding: 1rem;
@@ -44,7 +49,7 @@
     }
   
     .nav-item {
-        padding: 0.5rem;
+        padding: 0.281rem;
         font-weight: 600;
 		font-size: 20px;
     }
@@ -63,35 +68,14 @@
     }
     .vorlie{
         float: left;
-        padding: 1rem;
-        border-radius: 16px;
+        border-radius: 0.8rem;
         border: 2px solid var(--color-1);
-        background-color: var(--color-main-background);
-        -webkit-backdrop-filter: blur(40px);
-        backdrop-filter: blur(5px);
 		overflow: hidden;
 		display: flex;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
 	}
-    .vorlie img{
-		border-radius: 50%;
-		float: left;
-		margin-right: 15px;
-	}
-	.vorlie .displayname{
-        padding: 0.5rem;
-        margin: auto;
-		font-weight: 600;
-        background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-        float: left;
-		font-size: 20px;
-	}
+    .vorlie iframe{
+        overflow: hidden;
+    }
     @media (max-width: 569px) {
         .navbar{
             float: left;
