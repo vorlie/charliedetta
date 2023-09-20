@@ -28,19 +28,18 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-		--color-background:#272746;
+		--accent-gradient: linear-gradient(45deg, #88c0d0, #5e81ac 30%, white 60%);
+		--color-background:#2e3440;
 		--color-main: #838383;
-		--color-main-background: #3b3b5e33;
+		--color-main-background: #3b4252;
 		--color-main-background-secondary: #ffffff1c;
 		--rn-background-color: #ffffff21;
 		--rn-background-color-2: #ffffff3f;
-		--color-1: #3b3b5e9f;
-		--color-2: #5f5f5f;
+		--color-1: #4c566a;
+		--color-2: #d8dee9;
 		--color-3: #3b3b5e9f;
 		--color-text-secondary: #00C9B1;
-		--color-text:#ffffff;
+		--color-text:#d8dee9;
 		--color-text-hover:#FFFFFF;
 		--border-color: #a1a1a17d;
 		--roundness: 16px;
@@ -49,7 +48,7 @@ const { title } = Astro.props;
 		scroll-behavior: smooth;
 		color: var(--color-text);
 		font-family: system-ui, sans-serif;
-		background-color: #111118;
+		background-color: var(--color-background);
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
