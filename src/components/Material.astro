@@ -1,7 +1,7 @@
 <astro>
 <h1><span class="text-gradient">Material You</span> Theme Generator</h1>
 <div class="pre-log">
-  <p>Logged in as:</p>
+  <p>Using avatar from:</p>
   <div class="discord-log">
     <img id="userAvatar" src="" width="50">
     <p id="userName"></p>
@@ -207,13 +207,10 @@ document.getElementById('generate')?.addEventListener('click', generateColors);
   align-content: center;
   display: flex;
   border-radius: 16px;
-  border: 2px solid var(--color-1);
   background-color: var(--color-main-background);
-  -webkit-backdrop-filter: blur(40px);
-  backdrop-filter: blur(5px);
   padding: 1%;
   margin: auto;
-  max-width: 650px;
+  max-width: 600px;
 }
   .pre-log p{
   margin: auto 20px auto 10px;
@@ -222,10 +219,7 @@ document.getElementById('generate')?.addEventListener('click', generateColors);
 .discord-log{
   padding: 1%;
   border-radius: 16px;
-  border: 2px solid var(--color-1);
-  background-color: var(--color-main-background);
-  -webkit-backdrop-filter: blur(40px);
-  backdrop-filter: blur(5px);
+  background-color: var(--color-main-background-secondary);
   display: inline-block;
   max-width: 700px;
   font-size: 30px;
@@ -292,7 +286,7 @@ h1 {
   margin-bottom: 10px;
 }
 #drop-area:hover{
-  background: var(--rn-background-color);
+  background: var(--rn-background-color-2);
 }
 .input-button{
   color: var(--text-color);

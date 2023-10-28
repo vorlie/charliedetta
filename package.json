@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.8.3",
+    "astro": "^3.4.0",
     "colorthief": "^2.4.0"
   }
 }

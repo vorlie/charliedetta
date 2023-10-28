@@ -12,9 +12,6 @@ export default defineConfig({
         '/charlotte':'./src/pages/charlotte.astro',
         '/anime':'./src/pages/anime.astro'
       },
-      experimental: {
-        redirects: true
-      },
       redirects: {
         '/discord': 'https://discord.gg/NMxKTbQcDZ',
         '/r/github': 'https://github.com/vorlie',
