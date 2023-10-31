@@ -1,86 +1,173 @@
 <astro>
 <div class="bg">
-    <nav class="navbar">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="/">Home</a></li>
-        <li class="nav-item"><a href="/search">Search</a></li>
-        <li class="nav-item"><a href="/materialdetta">M3 Gen</a></li>
-        <li class="nav-item"><a href="/discord-timestamps">Timestamps</a></li>
-      </ul>
-    </nav>        
     <div class="vorlie">
-        <iframe
-        title="Discord user embed"
-        width="340"
-        height="72"
-        frameborder="0"
-        sandbox="allow-scripts"
-        src="https://widgets.vendicated.dev/user?id=614807913302851594&theme=dark&banner=false&full-banner=false&rounded-corners=true&discord-icon=false&badges=true&guess-nitro=false&background-color=%233b4252&foreground-color=%23d8dee9&guess-nitro=true"
-    ></iframe>
-    </div>
+        <img src="https://cdn.discordapp.com/avatars/614807913302851594/c20072118fdd27cb897a1bd2db2dd468.webp?size=256">
+        <div class="userinfo">
+            <p>Sycho <span class="text-gradient">@vorlie</span></p>
+            <div class="badges">
+                <img src="/hypesquad-balance.png">
+                <img src="/active-developer.png">
+                <img src="/nitro.png">
+            </div>
+        </div>
+    </div>   
+    <label>
+        <input type="checkbox">
+        <span class="menu"> <span class="hamburger"></span></span>
+        <ul class="navbar-button">
+            <li class="navbar-button"><a class="navbar-button--link" href="/">Home</a></li>
+            <li class="navbar-button"><a class="navbar-button--link" href="/search">Search</a></li>
+            <li class="navbar-button"><a class="navbar-button--link" href="/materialdetta">M3 Gen</a></li>
+            <li class="navbar-button"><a class="navbar-button--link" href="/discord-timestamps">Timestamps</a></li>
+        </ul>
+    </label>
 </div>
 </astro>
-  
 <style>
-    .username{
-        color: var(--color-3);
-        margin: auto;
-		font-weight: 600;
-        font-size: 20px;
-    }
-    .bg{
-        overflow: hidden;
-    }
-    .navbar {
-        float: right;
-        overflow: hidden;
-        border-radius: 0.8rem;
-        border: 2px solid var(--color-1);
-        background-color: var(--color-main-background);
-        -webkit-backdrop-filter: blur(40px);
-        backdrop-filter: blur(5px);
-        padding: 1rem;
-    }
+body{
+    overflow-x: hidden;
+}
+.vorlie{
+    padding: 5px;
+    border-radius: var(--roundness);
+    background-color: var(--color-main-background);
+    width: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.vorlie img{
+	border-radius: 50%;
+	margin-right: 15px;
+    width: 50px;
+}
+.userinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.userinfo img{
+    width: 18px;
+}
+.userinfo p{
+    margin: 8px 0;
+	font-weight: 600;
+	font-size: 20px;
+}
+.text-gradient{
+    background-image: var(--accent-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 400%;
+	background-position: 0%;
+}
+label .menu {
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    z-index: 100;
+    width: 200px;
+    height: 200px;
+    background: var(--color-main-background);
+    border-radius: 50% 50% 50% 50%;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    box-shadow: 0 0 0 0 var(--color-main-background), 0 0 0 0 var(--color-main-background);
+    cursor: pointer;
+}
+label .hamburger {
+    position: absolute;
+    top: 135px;
+    left: 50px;
+    width: 30px;
+    height: 2px;
+    background: var(--color-text);
+    display: block;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+label .hamburger:after, label .hamburger:before {
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--color-text);
+}
+label .hamburger:before { top: -10px; }
+
+label .hamburger:after { bottom: -10px; }
+
+label input { display: none; }
+
+label input:checked + .menu {
+    box-shadow: 0 0 0 100vw var(--color-main-background), 0 0 0 100vh var(--color-main-background);
+    border-radius: 0;
   
-    .nav-list {
-        list-style-type: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-    }
+}
+
+label input:checked + .menu .hamburger {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
   
-    .nav-item {
-        padding: 0.281rem;
-        font-weight: 600;
-		font-size: 20px;
-    }
+}
+
+label input:checked + .menu .hamburger:after {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    bottom: 0;
   
-    .nav-item a {
-        text-decoration: none;
-        color: var(--color-text);
-        transition: 0.2s ease;
-    }
-    .nav-item a:hover{
-        background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-    }
-    .vorlie{
-        float: left;
-        border-radius: 0.8rem;
-        border: 2px solid var(--color-1);
-		overflow: hidden;
-		display: flex;
-	}
-    .vorlie iframe{
-        overflow: hidden;
-    }
-    @media (max-width: 569px) {
-        .navbar{
-            float: left;
-            margin-bottom: 8px;
-        }
-    }
+}
+
+label input:checked + .menu .hamburger:before {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    top: 0;
+  
+}
+
+label input:checked + .menu + ul { 
+    opacity: 1; 
+    pointer-events: auto;
+}
+
+label ul {
+    list-style: none;
+    z-index: 200;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    -webkit-transition: .25s 0s ease-in-out;
+    transition: .25s 0s ease-in-out;
+    pointer-events: none;
+}
+
+label .navbar-button--link {
+    font-size: 30px;
+    margin-bottom: 1em;
+    display: block;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: 0.2s ease;
+    font-weight: bold;
+}
+
+label .navbar-button--link:hover {
+    margin-bottom: 1em;
+    display: block;
+    background-image: var(--accent-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 400%;
+	background-position: 0%;
+    text-decoration: none;
+}
 </style>
