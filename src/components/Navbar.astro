@@ -1,5 +1,4 @@
 <astro>
-<div class="bg">
     <div class="vorlie">
         <img src="https://cdn.discordapp.com/avatars/614807913302851594/c20072118fdd27cb897a1bd2db2dd468.webp?size=256">
         <div class="userinfo">
@@ -21,7 +20,6 @@
             <li class="navbar-button"><a class="navbar-button--link" href="/discord-timestamps">Timestamps</a></li>
         </ul>
     </label>
-</div>
 </astro>
 <style>
 body{
@@ -169,5 +167,13 @@ label .navbar-button--link:hover {
 	background-size: 400%;
 	background-position: 0%;
     text-decoration: none;
+}
+@media (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
+    label .menu {
+        position: fixed;
+    }
 }
 </style>
