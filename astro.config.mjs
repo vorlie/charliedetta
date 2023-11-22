@@ -17,7 +17,6 @@ export default defineConfig({
         '/r/github': 'https://github.com/vorlie',
         '/r/youtube':'https://youtube.com/@vve1_',
         '/r/faceit':'https://www.faceit.com/en/players/vorlie',
-        '/oneevv/invite':'https://discord.com/api/oauth2/authorize?client_id=1060061912710258699&permissions=10311612919030&scope=bot%20applications.commands',
-        '/oneevv/sourcecode':'https://github.com/vorlie/1evv'
+        '/vxrlie/invite':'https://discord.com/oauth2/authorize?client_id=1060061912710258699&permissions=10309465402486&scope=bot%20applications.commands'
       }
 });
