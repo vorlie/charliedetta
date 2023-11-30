@@ -14,6 +14,7 @@ export default defineConfig({
         '/r/github': 'https://github.com/vorlie',
         '/r/youtube':'https://youtube.com/@vve1_',
         '/r/faceit':'https://www.faceit.com/en/players/vorlie',
+        '/r/ugg':'https://u.gg/lol/profile/eun1/the%20mighty%20dio/overview',
         '/vxrlie/invite':'https://discord.com/oauth2/authorize?client_id=1060061912710258699&permissions=10309465402486&scope=bot%20applications.commands'
       }
 });
