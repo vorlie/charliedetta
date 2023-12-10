@@ -2,13 +2,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    routes: {
-        '/*': './src/pages/404.astro',
-        '/search': './src/pages/search.astro',
-        '/materialdetta':'./src/pages/materialdetta.astro',
-        '/nodc-materialdetta':'./src/pages/nodc-materialdetta.astro',
-        '/login':'./src/pages/login.astro',
-      },
     redirects: {
         '/discord': 'https://discord.gg/NMxKTbQcDZ',
         '/r/github': 'https://github.com/vorlie',
