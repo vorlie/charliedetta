@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
     redirects: {
-        '/discord': 'https://discord.gg/NMxKTbQcDZ',
+        '/discord': 'https://discord.gg/ujYCjUwu6U',
         '/r/github': 'https://github.com/vorlie',
         '/r/youtube':'https://youtube.com/@vve1_',
         '/r/faceit':'https://www.faceit.com/en/players/vorlie',

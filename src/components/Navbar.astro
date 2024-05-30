@@ -1,12 +1,12 @@
 <astro>
     <div class="vorlie">
-        <img src="https://cx.tixte.co/r/lw6c9dq4xe4.jpg">
+        <img src="https://you-all-have.no-friends.xyz/r/124.jpg">
         <div class="userinfo">
-            <p>ちゃありい <span class="text-gradient">@vorlie</span></p>
+            <p>ちゃありい <span class="span-color">@vorlie</span></p>
             <div class="badges">
-                <img src="/hypesquad-balance.png">
-                <img src="/active-developer.png">
-                <img src="/nitro.png">
+                <img src="/images/hypesquad-balance.png">
+                <img src="/images/active-developer.png">
+                <!-- <img src="/images/nitro.png"> -->
             </div>
         </div>
     </div>   
@@ -16,6 +16,7 @@
         <ul class="navbar-button">
             <li class="navbar-button"><a class="navbar-button--link" href="/">Home</a></li>
             <li class="navbar-button"><a class="navbar-button--link" href="/search">Search</a></li>
+            <li class="navbar-button"><a class="navbar-button--link" href="/fonts">Fonts for Bunny</a></li>
             <li class="navbar-button"><a class="navbar-button--link" href="/discord-timestamps">Timestamps</a></li>
         </ul>
     </label>
@@ -28,7 +29,7 @@ body{
     padding: 5px;
     border-radius: var(--roundness);
     background-color: var(--color-main-background);
-    width: 330px;
+    width: 250px;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -40,6 +41,7 @@ body{
 	margin-right: 10px;
     width: 50px;
 }
+
 .userinfo{
     display: flex;
     flex-direction: column;
@@ -54,12 +56,8 @@ body{
 	font-weight: 600;
 	font-size: 20px;
 }
-.text-gradient{
-    background-image: var(--accent-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-size: 400%;
-	background-position: 0%;
+.span-color {
+	color: var(--accent-gradient);
 }
 label .menu {
     position: absolute;
@@ -162,11 +160,7 @@ label .navbar-button--link {
 label .navbar-button--link:hover {
     margin-bottom: 1em;
     display: block;
-    background-image: var(--accent-gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-size: 400%;
-	background-position: 0%;
+    color: var(--accent-gradient);
     text-decoration: none;
 }
 @media (max-width: 768px) {
