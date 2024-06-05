@@ -91,7 +91,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
         detailsElement.innerHTML = `
-            <p style="font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${activity.name}</p>
+            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${activity.name}</p>
             ${activity.details ? `<p style="margin: 2px;">${activity.details}</p>` : ''}
             ${activity.state ? `<p style="margin: 2px;">${activity.state}</p>` : ''}
         `;
