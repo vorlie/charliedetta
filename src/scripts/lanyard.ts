@@ -43,16 +43,13 @@ const updatePresence = async (): Promise<void> => {
     displayPresence(presence);
 };
 
-function extractImageUrl(url: string): string {
+function extractImageUrl(url: string, application_id?: string): string {
     if (url.startsWith('mp:external/')) {
-        const afterExternal = url.substring(url.indexOf('mp:external/') + 'mp:external/'.length);
-        const httpsIndex = afterExternal.indexOf('https/');
-        const protocolIndex = Math.min(httpsIndex >= 0 ? httpsIndex : Infinity);
-        if (protocolIndex !== Infinity) {
-            return afterExternal.substring(protocolIndex).replace('https/', 'https://');
-        }
-    } else if (url.startsWith('spotify:')) {
+        return `https://media.discordapp.net/external/${url.replace('mp:external/', '')}`;
+    } else if (url.startsWith("spotify:")) {
         return url.replace("spotify:", "https://i.scdn.co/image/");
+    } else if (application_id) {
+        return `https://cdn.discordapp.com/app-assets/${application_id}/${url}.webp`;
     }
     return url;
 }
@@ -76,10 +73,10 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         activityElement.classList.add('activity');
     
         let imageUrl = '/images/default.png'; 
-        if (activity.assets && activity.assets.large_image) {
-            imageUrl = extractImageUrl(activity.assets.large_image);
-        } else if (activity.assets && activity.assets.small_image) {
-            imageUrl = extractImageUrl(activity.assets.small_image);
+        if (activity.assets?.large_image) {
+            imageUrl = extractImageUrl(activity.assets.large_image, activity.application_id);
+        } else if (activity.assets?.small_image) {
+            imageUrl = extractImageUrl(activity.assets.small_image, activity.application_id);
         }
         console.log('Image URL:', imageUrl); 
         const imgElement = document.createElement('img');
