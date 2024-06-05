@@ -1,22 +1,102 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Main from '../components/Main.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import LanyardPresence from '../components/LanyardPresence';
+import '../styles/LanyardPresence.css';
 ---
 
 <Layout title="Vorlie | Home">
-	<canvas></canvas>
-	<Navbar />
-	<Main />
+    <canvas></canvas>
+    <Navbar />
+    <div class="main">
+        <div class="text">
+            <p class="header-text">
+                Hi. I'm <span class="span-color">Charlie</span>, a bot developer
+            </p>
+            <p>
+                In free time I play games, such as CS:GO (I suck), League of
+                Legends, Minecraft and watch some movies, shows!<br />The bot
+                I'm developing is in my <span class="span-color"
+                    ><a href="/discord">discord server</a></span
+                >, its mainly polish language based server
+            </p>
+        </div>
+        <div class="buttons">
+            <a
+                style="--accent: rgb(200, 155, 60); --accent-gradient: linear-gradient(45deg, var(--accent), #0397AB 30%, white 60%);"
+                href="/r/ugg">League of Legends</a
+            >
+            <a
+                style="--accent: rgb(255, 164, 0); --accent-gradient: linear-gradient(45deg, var(--accent), #1D2C48 30%, white 60%);"
+                href="/r/faceit">Faceit</a
+            >
+            <a
+                style="--accent: rgb(255, 0, 0); --accent-gradient: linear-gradient(45deg, var(--accent), #ff8682 30%, white 60%);"
+                href="/r/youtube">Youtube</a
+            >
+            <a
+                style="--accent: rgb(75, 159, 255); --accent-gradient: linear-gradient(45deg, var(--accent), #ff769f 30%, white 60%);"
+                href="/r/github">Github</a
+            >
+            <a
+                style="--accent: rgb(88, 101, 242); --accent-gradient: linear-gradient(45deg, var(--accent), #EB459E 30%, white 60%);"
+                href="/discord">Discord</a
+            >
+        </div>
+    </div>
+    <LanyardPresence />
 </Layout>
 <script src="/src/scripts/particles.js"></script>
 <style>
-canvas{
-    z-index: -10;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
+    canvas {
+        z-index: -10;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .main {
+        padding: 1rem;
+        max-width: 1000px;
+        margin: 120px auto 10px auto;
+        text-align: center;
+    }
+    .text {
+        color: var(--color-text);
+        font-size: 30px;
+    }
+    .header-text {
+        font-size: 40px;
+        font-weight: 600;
+    }
+    .buttons {
+        padding: 1rem;
+        margin: auto;
+        max-width: 500px;
+        border-radius: 16px;
+        background-color: var(--color-main-background);
+        backdrop-filter: blur(5px);
+    }
+    .buttons a {
+        text-decoration: none;
+        border: 10px solid transparent;
+        color: var(--color-text);
+        border-radius: 16px;
+        transition: 0.2s ease;
+    }
+    .buttons a:hover {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .span-color {
+        color: var(--accent-gradient);
+    }
+    .span-color a {
+        color: var(--accent-gradient);
+        text-decoration: none;
+    }
 </style>
