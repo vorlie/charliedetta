@@ -67,6 +67,10 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         container.innerText = 'Loading...';
         return;
     }
+    if (presence.activities.length === 0) {
+        container.innerText = 'Not doing anything right now.';
+        return;
+    }
     presence.activities.forEach(async (activity, index) => {
         const activityElement = document.createElement('div');
         activityElement.classList.add('activity');
