@@ -1,0 +1,27 @@
+<astro>
+    <p class="header">Activities (Not finished)</p>
+    <div class="presence-container"></div>
+</astro>
+<script src="../scripts/lanyard.ts"></script>
+<style>
+.header{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+}
+.presence-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    margin: 15px auto;
+    border-radius: var(--roundness);
+    background: var(--color-main-background);
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: fit-content;
+}
+
+</style>

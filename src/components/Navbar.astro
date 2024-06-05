@@ -1,15 +1,9 @@
 <astro>
     <div class="vorlie">
-        <img src="https://you-all-have.no-friends.xyz/r/124.jpg">
+        <img src="">
         <div class="userinfo">
-            <p>ちゃありい <span class="span-color">@vorlie</span></p>
-            <div class="badges">
-                <img src="/images/hypesquad-balance.png">
-                <img src="/images/active-developer.png">
-                <!-- <img src="/images/nitro.png"> -->
-            </div>
         </div>
-    </div>   
+    </div> 
     <label>
         <input type="checkbox">
         <span class="menu"> <span class="hamburger"></span></span>
@@ -21,6 +15,7 @@
         </ul>
     </label>
 </astro>
+<script src="../scripts/lanyardNavbar.ts"></script>
 <style>
 body{
     overflow-x: hidden;
@@ -47,17 +42,6 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     margin-right: 5px;
-}
-.userinfo img{
-    width: 18px;
-}
-.userinfo p{
-    margin: 8px 0;
-	font-weight: 600;
-	font-size: 20px;
-}
-.span-color {
-	color: var(--accent-gradient);
 }
 label .menu {
     position: absolute;
