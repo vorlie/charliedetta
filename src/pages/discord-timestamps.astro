@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Vorlie | Discord Timestamp Generator">
-	<canvas></canvas>
     <div class="header">
         <h1>Discord Timestamp Generator</h1>
     </div>
@@ -29,17 +28,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </div>
 </Layout>
-<script src="/src/scripts/particles.js"></script>
 <script src="/src/scripts/timestamps.js"></script>
 <style>
-canvas{
-    z-index: -10;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
 .header{
     text-align: left;
 }
@@ -103,9 +93,6 @@ button {
     }
     .header{
         text-align: center;
-    }
-    canvas{
-        display: none;
     }
 }
 </style>

@@ -3,23 +3,13 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Vorlie | Credits">
-    <canvas></canvas>
     <p class="header">Credits</p>
     <p class="text">Discord Integration: <a class="link" href="https://github.com/Phineas/lanyard?tab=readme-ov-file">Lanyard by Phineas</a></p>
     <p class="text">Discord Timestamp Generator: <a class="link" href="https://r.3v.fi/discord-timestamps/">Discord Timestamps by r.3v</a></p>
     <p class="text">Website hosting: <a class="link" href="https://vercel.com/">Vercel</a></p>
     <p class="text">Framework(s): <a class="link" href="https://astro.build/">Astro</a></p>
 </Layout>
-<script src="/src/scripts/particles.js"></script>
 <style>
-    canvas{
-        z-index: -100;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
     .header{
         padding-top: 5px;
         font-size: 30px;
@@ -44,9 +34,6 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 768px) {
         .header{
             text-align: center;
-        }
-        canvas{
-            display: none;
         }
         .text{
             text-align: center;
