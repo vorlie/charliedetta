@@ -5,6 +5,7 @@ interface Props {
 const { title } = Astro.props;
 
 import Sidebar from '../components/Sidebar.astro';
+import Particles from '../components/particles.astro';
 ---
 
 <!DOCTYPE html>
@@ -24,6 +25,7 @@ import Sidebar from '../components/Sidebar.astro';
 		<meta name="theme-color" content="#896db9">
 	</head>
 	<body>
+		<Particles />
 		<div class="sidebar-container">
 			<div class="sidebar">
 				<Sidebar />

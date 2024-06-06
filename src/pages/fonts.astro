@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Vorlie | Fonts">
-    <canvas></canvas>
     <div class="main">
         <h1 class="title">Fonts for <a href="https://github.com/pyoncord/Bunny">Bunny</a></h1>
         <div class="container">
@@ -58,16 +57,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </div>
 </Layout>
-<script src="/src/scripts/particles.js"></script>
 <style>
-    canvas{
-        z-index: -10;
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
     .website-preview-container{
         padding-top: 10px;
     }
@@ -77,7 +67,7 @@ import Layout from '../layouts/Layout.astro';
         border-radius: var(--roundness);
         transition: 0.2s ease;
         &:hover{
-            filter: drop-shadow(0 0 5px var(--color-main-background))
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.233))
         }
     }
 
@@ -149,6 +139,7 @@ import Layout from '../layouts/Layout.astro';
         text-align: center;
         background: var(--color-main-background-secondary);
         border-radius: var(--roundness);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
     }
 
     .nested-container {
@@ -188,7 +179,7 @@ import Layout from '../layouts/Layout.astro';
         border-radius: var(--roundness);
         transition: 0.2s ease;
         &:hover{
-            filter: drop-shadow(0 0 5px var(--color-main-background))
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.233))
         }
     }
 
@@ -219,9 +210,6 @@ import Layout from '../layouts/Layout.astro';
 
         .nested-container {
             gap: 10px;
-        }
-        canvas{
-            display: none;
         }
     }
 </style>
