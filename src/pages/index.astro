@@ -54,7 +54,7 @@ import Lanyard from "../components/Lanyard.astro";
 .main {
     text-align: left;
     justify-content: left;
-    max-width: 1000px;
+    max-width: 100%;
 }
 .text {
     color: var(--color-text);
@@ -105,5 +105,14 @@ import Lanyard from "../components/Lanyard.astro";
 .span-color a {
     color: var(--accent-gradient);
     text-decoration: none;
+}
+@media (max-width: 768px){
+    .main {
+        text-align: center;
+        padding: 10px;
+    }
+    .header-text-sec {
+        text-align: center;
+    }
 }
 </style>

@@ -78,6 +78,20 @@ import Particles from '../components/particles.astro';
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
+	img{
+		-webkit-user-drag: none;
+		user-drag: none;
+		pointer-events: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+	}
+	body, .non-selectable {
+		-webkit-user-select: none;
+		-moz-user-select: none;   
+		-ms-user-select: none;    
+		user-select: none;    
+	}
 	.sidebar-container {
 		display: block;
         position: fixed;
