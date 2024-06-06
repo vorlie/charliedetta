@@ -1,12 +1,9 @@
-const generateNavbarHTML = (navbarData: DiscordUser, status: string): string => {
+const generateNavbarHTML = (navbarData: DiscordUser): string => {
     const displayName = navbarData.display_name || '';
     const username = navbarData.username;
 
     return `
         <p style="margin: 4px auto;font-weight: 600;font-size: 20px;">${displayName}<span style="color: var(--accent-gradient);"> @${username}</span></p>
-        <div class="badges">
-            <img src="/images/${status}.png" style="width: 15px; margin:auto" alt="${status}">
-        </div>
     `;
 };
 
@@ -30,21 +27,40 @@ const updateNavbar = async (): Promise<void> => {
 
 const displayNavbar = (navbarData: LanyardData | null): void => {
     const navbar = document.querySelector('.vorlie');
-    if (!navbar || !navbarData) return;
+    if (!navbar || !navbarData) {
+        if (navbar) {
+            navbar.innerHTML = '<p>Loading...</p>';
+        }
+        return;
+    }
 
     const avatarImg = navbar.querySelector('img');
     const userInfo = navbar.querySelector('.userinfo');
 
     if (userInfo) {
-        const status = navbarData.discord_status;
-        userInfo.innerHTML = generateNavbarHTML(navbarData.discord_user, status);
+        userInfo.innerHTML = generateNavbarHTML(navbarData.discord_user);
     }
 
     if (avatarImg) {
         avatarImg.src = `https://cdn.discordapp.com/avatars/${navbarData.discord_user.id}/${navbarData.discord_user.avatar}.png`;
         avatarImg.alt = 'User Avatar';
+        avatarImg.style.borderColor = getStatusColor(navbarData.discord_status);
     }
 };
+
+const getStatusColor = (status: string): string => {
+    switch (status) {
+        case 'online':
+            return 'var(--status-color-online)';
+        case 'idle':
+            return 'var(--status-color-idle)';
+        case 'dnd':
+            return 'var(--status-color-dnd)';
+        default:
+            return 'var(--status-color-offline)';
+    }
+};
+
 
 updateNavbar();
 

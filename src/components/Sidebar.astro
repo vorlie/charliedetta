@@ -1,0 +1,78 @@
+<div class="sidebar">
+  <div class="vorlie">
+    <img src="">
+    <div class="userinfo">
+    </div>
+  </div> 
+  <h2 class="title">Navigation</h2>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/fonts">Fonts</a>
+    <a href="/discord-timestamps">Timestamps</a>
+    <a href="/credits">Credits</a>
+  </nav>
+</div>
+<script src="../scripts/lanyardSidebar.ts"></script>
+<style>
+.vorlie{
+  padding: 5px;
+  border-radius: var(--roundness);
+  background-color: var(--color-main-background);
+  max-width: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.vorlie img{
+	border-radius: 50%;
+	margin-left: 5px; 
+	margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--status-color-offline); 
+}
+
+.userinfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-right: 5px;
+}
+
+.user-info {
+  display: flex; 
+  flex-direction: column;
+}
+
+.user-info p {
+  text-align: left;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.sidebar {
+  padding: 10px;
+}
+.title{
+  text-align: center;
+}
+nav a {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.2s ease;
+  padding: 4px;
+  text-align: center;
+  border-radius: var(--roundness-2);
+  background: var(--color-main-background-secondary);
+  &:hover {
+    color: var(--color-text-hover);
+    background: var(--color-1);
+  }
+}
+
+
+</style>

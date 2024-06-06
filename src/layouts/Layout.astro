@@ -2,8 +2,9 @@
 interface Props {
 	title: string;
 }
-
 const { title } = Astro.props;
+
+import Sidebar from '../components/Sidebar.astro';
 ---
 
 <!DOCTYPE html>
@@ -23,8 +24,23 @@ const { title } = Astro.props;
 		<meta name="theme-color" content="#896db9">
 	</head>
 	<body>
-		<slot />
-	</body>
+		<div class="sidebar-container">
+			<div class="sidebar">
+				<Sidebar />
+			</div>
+		</div>
+		<div class="navbar-container">
+			<div class="navbar">
+				<a href="/">Home</a>
+				<a href="/fonts">Fonts</a>
+				<a href="/discord-timestamps">Timestamps</a>
+				<a href="/credits">Credits</a>
+			</div>
+		</div>
+		<div class="main-content">
+		  <slot />
+		</div>
+	  </body>
 </html>
 <style is:global>
 	:root {
@@ -44,6 +60,11 @@ const { title } = Astro.props;
 		--color-text-hover:#FFFFFF;
 		--border-color: #3d278b7d;
   		--roundness: 16px;
+		--roundness-2: 8px;
+		--status-color-online: #43b581; 
+		--status-color-dnd: #f04747;
+		--status-color-idle: #faa61a;
+		--status-color-offline: #636366;
 	}
 	html {
 		scroll-behavior: smooth;
@@ -55,11 +76,70 @@ const { title } = Astro.props;
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
+	.sidebar-container {
+		display: block;
+        position: fixed;
+        width: 250px;
+        height: 98.5%;
+        background: var(--color-main-background-secondary);
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+        overflow-y: auto;
+		border-radius: var(--roundness);
+    }
+	.navbar-container {
+		display: none;
+	}
+	.main-content {
+		margin-left: 260px;
+		padding: 20px;
+        background: var(--color-main-background-secondary);
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+        overflow-y: auto;
+		border-radius: var(--roundness);
+    }
+	@media (max-width: 768px) {
+		.sidebar-container {
+			display: none;
+		}
+		.main-content {
+			margin-left: 0;
+			padding: 5px;
+			margin-top: 70px; 
+        }
+		.navbar-container {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+			height: 60px;
+			border-radius: 0 0 var(--roundness) var(--roundness);
+            background: var(--color-main-background-secondary);
+			backdrop-filter: blur(2px);
+			-webkit-backdrop-filter: blur(2px);
+            z-index: 1000;
+        }
+		.navbar{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+		}
+		.navbar a {
+			margin: 5px;
+			padding: 10px;
+			color: var(--color-text);
+			text-decoration: none;
+			font-size: 18px;
+			transition: 0.2s ease;
+			border-radius: var(--roundness-2);
+			background: var(--color-main-background-secondary);
+			&:active {
+				color: var(--color-text-hover);
+				background: var(--color-1);
+			}
+		}
 	}
 </style>

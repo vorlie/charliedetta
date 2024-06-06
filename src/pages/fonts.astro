@@ -1,11 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
 ---
 
 <Layout title="Vorlie | Fonts">
     <canvas></canvas>
-    <Navbar />
     <div class="main">
         <h1 class="title">Fonts for <a href="https://github.com/pyoncord/Bunny">Bunny</a></h1>
         <div class="container">
@@ -77,10 +75,12 @@ import Navbar from '../components/Navbar.astro';
         width: 100%;
         max-width: 400px;
         border-radius: var(--roundness);
+        transition: 0.2s ease;
+        &:hover{
+            filter: drop-shadow(0 0 5px var(--color-main-background))
+        }
     }
-    .website-preview:hover{
-        filter: drop-shadow(0 0 5px var(--color-main-background))
-    }
+
     .link-secondary{
         background: var(--color-main-background-secondary);
         padding: 10px;
@@ -89,11 +89,11 @@ import Navbar from '../components/Navbar.astro';
         color: var(--accent-gradient);
         transition: 0.2s ease;
         margin: auto 0.2rem;
-    }
-    .link-secondary:hover{
-        background: var(--color-1);
-        color: var(--color-text-hover);
-        text-decoration: underline;
+        &:hover{
+            background: var(--color-1);
+            color: var(--color-text-hover);
+            text-decoration: underline;
+        }
     }
     .list{
         color: var(--color-text);
@@ -103,38 +103,37 @@ import Navbar from '../components/Navbar.astro';
     }
     .title{
         color: var(--color-text);
-        background: var(--color-main-background-secondary);
         padding: 10px;
-        border-radius: var(--roundness);
+        margin: 0;
     }
     .title a{
         text-decoration: none;
         color: var(--accent-gradient);
         transition: 0.2s ease;
-    }
-    .title a:hover{
-        color: var(--color-text-hover);
-        text-decoration: underline;
+        &:hover{
+            color: var(--color-text-hover);
+            text-decoration: underline;
+        }
     }
     .main {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        justify-content: left;
+        align-items: left;
+        text-align: left;
         margin: auto;
-        min-height: 80vh;
-        padding: 20px;
+        min-height: fit-content;
+        padding: 10px;
         color: #333;
     }
     .link{
         text-decoration: none;
         color: var(--accent-gradient);
         transition: 0.2s ease;
-    }
-    .link:hover{
-        color: var(--color-text-hover);
-        text-decoration: underline;
+        &:hover{
+            color: var(--color-text-hover);
+            text-decoration: underline;
+        }
     }
     .container {
         display: flex;
@@ -188,13 +187,24 @@ import Navbar from '../components/Navbar.astro';
         max-width: 200px;
         border-radius: var(--roundness);
         transition: 0.2s ease;
-    }
-    .preview:hover{
-        filter: drop-shadow(0 0 5px var(--color-main-background))
+        &:hover{
+            filter: drop-shadow(0 0 5px var(--color-main-background))
+        }
     }
 
     /* Media Queries for responsiveness */
     @media (max-width: 768px) {
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: auto;
+            min-height: 80vh;
+            padding: 20px;
+            color: #333;
+        }
         .container, .nested-container {
             flex-direction: column;
         }
@@ -209,6 +219,9 @@ import Navbar from '../components/Navbar.astro';
 
         .nested-container {
             gap: 10px;
+        }
+        canvas{
+            display: none;
         }
     }
 </style>
