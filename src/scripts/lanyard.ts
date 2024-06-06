@@ -92,10 +92,11 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
+        const maxTextLength = window.innerWidth <= 768 ? 25 : 50;
         detailsElement.innerHTML = `
             <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${activity.name}</p>
-            ${activity.details ? `<p style="margin: 2px;">${activity.details}</p>` : ''}
-            ${activity.state ? `<p style="margin: 2px;">${activity.state}</p>` : ''}
+            ${activity.details ? `<p style="margin: 2px;" class="activityDetails">${truncateText(activity.details, maxTextLength)}</p>` : ''}
+            ${activity.state ? `<p style="margin: 2px;" class="activityState">${truncateText(activity.state, maxTextLength)}</p>` : ''}
         `;
     
         activityElement.appendChild(detailsElement);
@@ -103,7 +104,12 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         container.appendChild(activityElement);
     });
 };
-    
+const truncateText = (text: string, maxLength: number): string => {
+    if (text.length > maxLength) {
+        return text.slice(0, maxLength) + '...';
+    }
+    return text;
+};
 updatePresence();
 
 setInterval(updatePresence, 10000);
