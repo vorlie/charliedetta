@@ -61,11 +61,11 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     container.innerHTML = ''; 
 
     if (!presence) {
-        container.innerText = 'Loading...';
+        container.innerHTML = 'Loading...';
         return;
     }
     if (presence.activities.length === 0) {
-        container.innerText = 'Not doing anything right now.';
+        container.innerHTML = 'Not doing anything right now.';
         return;
     }
     presence.activities.forEach(async (activity, index) => {
