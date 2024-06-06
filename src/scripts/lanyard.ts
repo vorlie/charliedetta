@@ -83,6 +83,8 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         imgElement.src = imageUrl;
         imgElement.alt = activity.name;
         imgElement.style.width = '60px'; 
+        imgElement.style.height = '60px';
+        imgElement.style.objectFit = 'cover';
         imgElement.style.borderRadius = '10px';
 
         activityElement.appendChild(imgElement);
