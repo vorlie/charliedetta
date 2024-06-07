@@ -88,6 +88,9 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     presence.activities.forEach(async (activity, index) => {
         const activityElement = document.createElement('div');
         activityElement.classList.add('activity');
+        activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
+        activityElement.style.borderRadius = 'var(--roundness)';
+        activityElement.style.padding = '10px';
 
         let imageUrl = '/images/default.png'; 
         if (activity.assets?.large_image) {
