@@ -1,13 +1,15 @@
 <div class="sidebar">
-  <div class="vorlie">
-    <img src="">
-    <div class="userinfo">
+  <a class="lanyard" href="https://discord.com/users/614807913302851594">
+    <div class="vorlie">
+      <img src="">
+      <div class="userinfo">
+      </div>
     </div>
-  </div> 
-  <h2 class="title">Navigation</h2>
+  </a>
   <nav>
     <a href="/">Home</a>
     <a href="/fonts">Fonts</a>
+    <a href="/projects">Projects</a>
     <a href="/discord-timestamps">Timestamps</a>
     <a href="/credits">Credits</a>
   </nav>
@@ -23,6 +25,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: 0.3s ease-in-out;
+  &:hover{
+    background: linear-gradient(to left, var(--color-main-background-secondary),  var(--color-1));
+  }
 }
 .vorlie img{
 	border-radius: 50%;
@@ -33,6 +39,18 @@
   border: 3px solid var(--status-color-offline);
 }
 
+.lanyard{
+  text-decoration: none;
+  color: inherit;
+  &:hover{
+    color: none;
+    animation: colorChange 0.5s ease-in-out infinite;
+  }
+}
+@keyframes colorChange {
+  0% {color: #4e43b5;}
+  100% {color: #ce47f0;}
+}
 .userinfo{
   display: flex;
   flex-direction: column;
@@ -54,11 +72,9 @@
 .sidebar {
   padding: 10px;
 }
-.title{
-  text-align: center;
-}
 nav a {
   display: block;
+  margin-top: 10px;
   margin-bottom: 10px;
   color: var(--color-text);
   text-decoration: none;

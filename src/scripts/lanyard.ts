@@ -71,6 +71,9 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     presence.activities.forEach(async (activity, index) => {
         const activityElement = document.createElement('div');
         activityElement.classList.add('activity');
+        activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
+        activityElement.style.borderRadius = 'var(--roundness)';
+        activityElement.style.padding = '10px';
     
         let imageUrl = '/images/default.png'; 
         if (activity.assets?.large_image) {
@@ -95,8 +98,8 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const maxTextLength = window.innerWidth <= 768 ? 25 : 50;
         detailsElement.innerHTML = `
             <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${activity.name}</p>
-            ${activity.details ? `<p style="margin: 2px;" class="activityDetails">${truncateText(activity.details, maxTextLength)}</p>` : ''}
-            ${activity.state ? `<p style="margin: 2px;" class="activityState">${truncateText(activity.state, maxTextLength)}</p>` : ''}
+            ${activity.details ? `<p style="margin: 2px;" class="activityDetails">${truncateText(activity.details, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
+            ${activity.state ? `<p style="margin: 2px;" class="activityState">${truncateText(activity.state, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
         `;
     
         activityElement.appendChild(detailsElement);

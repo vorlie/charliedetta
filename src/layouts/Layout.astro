@@ -23,6 +23,7 @@ import Particles from '../components/particles.astro';
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="theme-color" content="#896db9">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	</head>
 	<body>
 		<Particles />
@@ -35,6 +36,7 @@ import Particles from '../components/particles.astro';
 			<div class="navbar">
 				<a href="/">Home</a>
 				<a href="/fonts">Fonts</a>
+				<a href="/projects">Projects</a>
 				<a href="/discord-timestamps">Timestamps</a>
 				<a href="/credits">Credits</a>
 			</div>
@@ -136,6 +138,7 @@ import Particles from '../components/particles.astro';
             left: 0;
             width: 100%;
 			height: 60px;
+			overflow-y: scroll;
 			border-radius: 0 0 var(--roundness) var(--roundness);
             background: var(--color-main-background-secondary);
 			backdrop-filter: blur(2px);
@@ -144,7 +147,7 @@ import Particles from '../components/particles.astro';
         }
 		.navbar{
 			display: flex;
-			justify-content: center;
+			justify-content: left;
 			align-items: center;
 			height: 100%;
 		}
@@ -153,6 +156,7 @@ import Particles from '../components/particles.astro';
 			padding: 10px;
 			color: var(--color-text);
 			text-decoration: none;
+			text-align: left;
 			font-size: 18px;
 			transition: 0.2s ease;
 			border-radius: var(--roundness-2);
