@@ -107,12 +107,70 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         container.appendChild(activityElement);
     });
 };
+
+const generateNavbarHTML = (navbarData: DiscordUser): string => {
+    const displayName = navbarData.display_name || '';
+    const username = navbarData.username;
+
+    return `
+        <p style="margin: 4px auto;font-weight: 600;font-size: 20px;">${displayName}<span style="color: var(--accent-gradient);"> @${username}</span></p>
+    `;
+};
+
+const displayNavbar = (navbarData: LanyardData | null): void => {
+    const navbar = document.querySelector('.vorlie');
+    if (!navbar || !navbarData) {
+        if (navbar) {
+            navbar.innerHTML = '<p>Loading...</p>';
+        }
+        return;
+    }
+
+    const avatarImg = navbar.querySelector('img');
+    const userInfo = navbar.querySelector('.userinfo');
+
+    if (userInfo) {
+        userInfo.innerHTML = generateNavbarHTML(navbarData.discord_user);
+    }
+
+    if (avatarImg) {
+        avatarImg.src = `https://cdn.discordapp.com/avatars/${navbarData.discord_user.id}/${navbarData.discord_user.avatar}.png`;
+        avatarImg.alt = 'User Avatar';
+        avatarImg.style.borderColor = getStatusColor(navbarData.discord_status);
+    }
+};
+const updateNavbar = async (): Promise<void> => {
+    const navbarData = await fetchPresence();
+    displayNavbar(navbarData);
+};
 const truncateText = (text: string, maxLength: number): string => {
     if (text.length > maxLength) {
         return text.slice(0, maxLength) + '...';
     }
     return text;
-};
-updatePresence();
 
-setInterval(updatePresence, 10000);
+};
+const getStatusColor = (status: string): string => {
+    switch (status) {
+        case 'online':
+            return 'var(--status-color-online)';
+        case 'idle':
+            return 'var(--status-color-idle)';
+        case 'dnd':
+            return 'var(--status-color-dnd)';
+        default:
+            return 'var(--status-color-offline)';
+    }
+};
+
+updatePresence();
+updateNavbar();
+
+const updateBoth = async (): Promise<void> => {
+    const presence = await fetchPresence();
+    const navbarData = await fetchPresence();
+    displayPresence(presence);
+    displayNavbar(navbarData);
+}
+
+setInterval(updateBoth, 10000);
