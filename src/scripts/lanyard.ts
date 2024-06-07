@@ -91,7 +91,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
         activityElement.style.borderRadius = 'var(--roundness)';
         activityElement.style.padding = '10px';
-        activityElement.style.maxWidth = '350px';
+        activityElement.style.width = '350px';
 
         let imageUrl = '/images/default.png'; 
         if (activity.assets?.large_image) {
@@ -113,8 +113,6 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
-        const maxTextLength = 25;
-
         let activityDetails = activity.details ?? '';
         let activityState = activity.state ?? '';
         let activityName = activity.name ?? '';
@@ -126,9 +124,9 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         }
 
         detailsElement.innerHTML = `
-            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName" title="${activityName}">${truncateText(activityName, maxTextLength)}</p>
-            ${activityDetails ? `<p style="margin: 2px;" class="activityDetails" title="${activityDetails}">${truncateText(activityDetails, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
-            ${activity.state ? `<p style="margin: 2px;" class="activityState" title="${activityState}">${truncateText(activityState, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
+            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName" title="${activityName}">${truncateText(activityName, 25)}</p>
+            ${activityDetails ? `<p style="margin: 2px;" class="activityDetails" title="${activityDetails}">${truncateText(activityDetails, 31)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
+            ${activity.state ? `<p style="margin: 2px;" class="activityState" title="${activityState}">${truncateText(activityState, 31)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
         `;
     
         activityElement.appendChild(detailsElement);
