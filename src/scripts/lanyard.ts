@@ -168,9 +168,8 @@ updateNavbar();
 
 const updateBoth = async (): Promise<void> => {
     const presence = await fetchPresence();
-    const navbarData = await fetchPresence();
     displayPresence(presence);
-    displayNavbar(navbarData);
+    displayNavbar(presence);
 }
 
 setInterval(updateBoth, 10000);
