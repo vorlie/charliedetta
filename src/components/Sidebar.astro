@@ -14,6 +14,9 @@
     <a href="/discord-timestamps">Timestamps</a>
     <a href="/credits">Credits</a>
   </nav>
+  <div class="footer">
+    <a href="https://github.com/vorlie/vorli3"><i class="bi bi-github"></i> Source Code</a>
+  </div>
 </div>
 <script src="../scripts/lanyard.ts"></script>
 <style>
@@ -31,7 +34,6 @@
     background: linear-gradient(to left, var(--color-main-background-secondary),  var(--color-1));
   }
 }
-
 #avatar {
   margin-left: 5px; 
 	margin-right: 10px;
@@ -104,6 +106,19 @@ nav a {
     background: var(--color-1);
   }
 }
-
-
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+}
+.footer a{
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.2s ease;
+  padding: 4px;
+  &:hover {
+    color: var(--color-text-hover);
+  }
+}
 </style>
