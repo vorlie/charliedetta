@@ -11,19 +11,36 @@ interface Activity {
     };
 }
 
+interface AvatarDecoration {
+    asset: string;
+    sku_id: number;
+}
+
 interface DiscordUser {
     id: string;
     username: string;
     avatar: string;
     display_name?: string;
+    avatar_decoration_data?: AvatarDecoration;
 }
 
 interface LanyardData {
     discord_user: DiscordUser;
     discord_status: string;
     activities: Activity[];
+    spotify?: Spotify;
 }
-
+interface Spotify {
+    track_id: string;
+    timestamps: {
+        start: number;
+        end: number;
+    };
+    album: string;
+    album_art_url: string;
+    artist: string;
+    song: string;
+}
 
 const fetchPresence = async (): Promise<LanyardData | null> => {
     try {
@@ -71,10 +88,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     presence.activities.forEach(async (activity, index) => {
         const activityElement = document.createElement('div');
         activityElement.classList.add('activity');
-        activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
-        activityElement.style.borderRadius = 'var(--roundness)';
-        activityElement.style.padding = '10px';
-    
+
         let imageUrl = '/images/default.png'; 
         if (activity.assets?.large_image) {
             imageUrl = extractImageUrl(activity.assets.large_image, activity.application_id);
@@ -96,14 +110,25 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
         const maxTextLength = window.innerWidth <= 768 ? 25 : 50;
+
+        let activityDetails = activity.details ?? '';
+        let activityState = activity.state ?? '';
+        let activityName = activity.name ?? '';
+        if (activity.name.toLowerCase().includes('spotify') && presence.spotify) {
+            activityName = `Listening to ${presence.spotify.song}`;
+            activityDetails = `on ${presence.spotify.album}`;
+            activityState = `by ${presence.spotify.artist}`;
+
+        }
+
         detailsElement.innerHTML = `
-            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${activity.name}</p>
-            ${activity.details ? `<p style="margin: 2px;" class="activityDetails">${truncateText(activity.details, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
-            ${activity.state ? `<p style="margin: 2px;" class="activityState">${truncateText(activity.state, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
+            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName">${truncateText(activityName, maxTextLength)}</p>
+            ${activityDetails ? `<p style="margin: 2px;" class="activityDetails">${truncateText(activityDetails, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
+            ${activity.state ? `<p style="margin: 2px;" class="activityState">${truncateText(activityState, maxTextLength)}</p>` : '<p style="margin: 2px;" class="activityState">N/A</p>'}
         `;
     
         activityElement.appendChild(detailsElement);
-    
+
         container.appendChild(activityElement);
     });
 };
@@ -126,7 +151,8 @@ const displayNavbar = (navbarData: LanyardData | null): void => {
         return;
     }
 
-    const avatarImg = navbar.querySelector('img');
+    const avatarImg = document.getElementById('avatar') as HTMLImageElement;
+    const avatarDecoImg = document.getElementById('avatar-deco') as HTMLImageElement;
     const userInfo = navbar.querySelector('.userinfo');
 
     if (userInfo) {
@@ -137,6 +163,14 @@ const displayNavbar = (navbarData: LanyardData | null): void => {
         avatarImg.src = `https://cdn.discordapp.com/avatars/${navbarData.discord_user.id}/${navbarData.discord_user.avatar}.png`;
         avatarImg.alt = 'User Avatar';
         avatarImg.style.borderColor = getStatusColor(navbarData.discord_status);
+    }
+
+    if (navbarData.discord_user.avatar_decoration_data && avatarDecoImg) {
+        avatarDecoImg.src = `https://cdn.discordapp.com/avatar-decoration-presets/${navbarData.discord_user.avatar_decoration_data.asset}.png`;
+        avatarDecoImg.alt = 'Avatar Decoration';
+        avatarDecoImg.style.display = 'block';
+    } else if (avatarDecoImg) {
+        avatarDecoImg.style.display = 'none';
     }
 };
 const updateNavbar = async (): Promise<void> => {

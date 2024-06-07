@@ -1,7 +1,8 @@
 <div class="sidebar">
   <a class="lanyard" href="https://discord.com/users/614807913302851594">
     <div class="vorlie">
-      <img src="">
+      <img id="avatar" src="" alt="User Avatar">
+      <img id="avatar-deco" src="" alt="Avatar Decoration">
       <div class="userinfo">
       </div>
     </div>
@@ -30,13 +31,27 @@
     background: linear-gradient(to left, var(--color-main-background-secondary),  var(--color-1));
   }
 }
-.vorlie img{
-	border-radius: 50%;
-	margin-left: 5px; 
+
+#avatar {
+  margin-left: 5px; 
 	margin-right: 10px;
+  display: block;
   width: 50px;
   height: 50px;
-  border: 3px solid var(--status-color-offline);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent; 
+}
+
+#avatar-deco {
+  position: absolute;
+  margin-left: 0px; 
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .lanyard{
