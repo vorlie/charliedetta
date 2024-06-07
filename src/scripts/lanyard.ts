@@ -113,7 +113,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
-        const maxTextLength = 28;
+        const maxTextLength = 25;
 
         let activityDetails = activity.details ?? '';
         let activityState = activity.state ?? '';
