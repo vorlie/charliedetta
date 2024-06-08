@@ -71,6 +71,7 @@ function extractImageUrl(url: string, application_id?: string): string {
     return url;
 }
 
+
 const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     const container = document.querySelector('.presence-container');
     if (!container) return;
@@ -91,7 +92,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
         activityElement.style.borderRadius = 'var(--roundness)';
         activityElement.style.padding = '10px';
-        activityElement.style.width = '350px';
+        activityElement.style.maxWidth = 'fit-content';
 
         let imageUrl = '/images/default.png'; 
         if (activity.assets?.large_image) {
@@ -113,6 +114,13 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
+        const maxTextLength = window.innerWidth <= 768 ? 25 : 50;
+        const truncateText = (text: string, maxLength: number) => {
+            if (text.length > maxLength) {
+                return text.slice(0, maxLength) + '...';
+            }
+            return text;
+        }
         let activityDetails = activity.details ?? '';
         let activityState = activity.state ?? '';
         let activityName = activity.name ?? '';
@@ -124,9 +132,30 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         }
 
         detailsElement.innerHTML = `
-            <p style="color: var(--accent-gradient); font-size: 20px; font-weight: 600; margin: 2px 0;" class="activityName" title="${activityName}">${truncateText(activityName, 25)}</p>
-            ${activityDetails ? `<p style="margin: 2px;" class="activityDetails" title="${activityDetails}">${truncateText(activityDetails, 31)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
-            ${activity.state ? `<p style="margin: 2px;" class="activityState" title="${activityState}">${truncateText(activityState, 31)}</p>` : '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
+        
+            <p 
+                style="color: var(--accent-gradient); 
+                    font-size: 20px; 
+                    font-weight: 600; 
+                    margin: 2px 0;" 
+                class="activityName" 
+                title="${activityName}">
+                ${truncateText(activityName, maxTextLength)}
+            </p>
+            ${activityDetails ? `<p 
+                style="
+                    margin: 2px;" 
+                class="activityDetails" 
+                title="${activityDetails}">
+                ${truncateText(activityDetails, maxTextLength)}</p>` : 
+                '<p style="margin: 2px;" class="activityDetails" title="N/A">N/A</p>'}
+            ${activityState ? `<p 
+                style="
+                    margin: 2px;"
+                class="activityState" 
+                title="${activityState}">
+                ${truncateText(activityState, maxTextLength)}</p>` : 
+                '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
         `;
     
         activityElement.appendChild(detailsElement);
@@ -179,13 +208,7 @@ const updateNavbar = async (): Promise<void> => {
     const navbarData = await fetchPresence();
     displayNavbar(navbarData);
 };
-const truncateText = (text: string, maxLength: number): string => {
-    if (text.length > maxLength) {
-        return text.slice(0, maxLength) + '...';
-    }
-    return text;
 
-};
 const getStatusColor = (status: string): string => {
     switch (status) {
         case 'online':
