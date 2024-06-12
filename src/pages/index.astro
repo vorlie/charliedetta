@@ -7,20 +7,15 @@ import Lanyard from "../components/Lanyard.astro";
     <div class="main">
         <div class="text">
             <p class="header-text">
-                Hey there! I'm <span class="span-color">Charlie</span>, <span class="span-size">a self-proclaimed clumsy developer and avid League of Legends enthusiast.</span>
+                Hey there! I'm <span class="span-color">Charlie</span>, an incompetent dev
             </p>
             <div class="body-text">
                 <p>
-                When I'm not wrestling with code, you'll find me diving into the virtual realms of gaming, indulging in the captivating world of anime, or losing myself in the magic of movies and shows.
-                </p>
-                <p>
-                League of Legends holds a special place in my heart as my all-time favorite game, offering endless hours of strategic gameplay and adrenaline-pumping battles.
-                </p>
-                <p>
-                As for anime, Bleach has captured my imagination with its captivating storyline and dynamic characters, making it a timeless favorite.
-                </p>
-                <p>
-                And when it comes to movies, nothing beats the enchanting world of Harry Potter. The magical adventures of Harry, Hermione, and Ron never fail to transport me to a world of wonder and excitement.
+                  I'm a 18 year old student who likes to make websites and code discord bots. I'm currently learning <span class="span-color">TypeScript</span>. 
+                  I know <span class="span-color">Python</span>, <span class="span-color">HTML/CSS</span>, <span class="span-color">Astro</span>.
+                  <br>I like to watch anime. My favourite anime(s) are <span class="span-color">Bleach</span> and <span class="span-color">86: Eighty Six</span>. 
+                  <br>I like to play <span class="span-color">League of Legends</span>, <span class="span-color">World of Tanks Blitz</span>, and <span class="span-color">Minecraft</span>. I also play other games.
+                  <br>
                 </p>
             </div>
         </div>
@@ -38,6 +33,15 @@ import Lanyard from "../components/Lanyard.astro";
     </div>
 </Layout>
 <style>
+.link{
+  text-decoration: none;
+  color: var(--accent-gradient);
+  transition: 0.2s ease;
+  &:hover{
+    color: var(--color-text-hover);
+    text-decoration: underline;
+  }
+}
 .main {
     text-align: left;
     justify-content: left;
@@ -64,6 +68,7 @@ import Lanyard from "../components/Lanyard.astro";
 }
 .body-text {
     margin: 0;
+    max-width: 95%;
 }
 .bi{
     font-size: 40px;
