@@ -95,7 +95,8 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
         activityElement.style.borderRadius = 'var(--roundness)';
         activityElement.style.padding = '10px';
-        activityElement.style.maxWidth = 'fit-content';
+        const maxWidth = window.innerWidth <= 768 ? '100%' : 'fit-content';
+        activityElement.style.maxWidth = maxWidth;
 
         let imageUrl = '/images/default.png'; 
         let isCustomStatus = activity.type === 4;
@@ -268,8 +269,11 @@ const getStatusColor = (status: string): string => {
     }
 };
 
+
+
 updatePresence();
 updateNavbar();
+
 
 const updateBoth = async (): Promise<void> => {
     const presence = await fetchPresence();
