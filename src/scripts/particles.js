@@ -23,7 +23,7 @@ function render(now) {
   if (snowflakes.length < maxSnowflakes)
   snowflakes.push(new Snowflake());
 
-  ctx.fillStyle = ctx.strokeStyle = '#342274';
+  ctx.fillStyle = ctx.strokeStyle = '#A41A4C';
 
   snowflakes.forEach(snowflake => snowflake.update(elapsed, now));
 }

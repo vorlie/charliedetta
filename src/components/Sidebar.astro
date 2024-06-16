@@ -32,9 +32,6 @@
   flex-direction: row;
   align-items: center;
   transition: 0.3s ease-in-out;
-  &:hover{
-    background: linear-gradient(to left, var(--color-main-background-secondary),  var(--color-1));
-  }
 }
 #avatar {
   margin-left: 5px; 
@@ -67,14 +64,6 @@
 .lanyard{
   text-decoration: none;
   color: inherit;
-  &:hover{
-    color: none;
-    animation: colorChange 0.5s ease-in-out infinite;
-  }
-}
-@keyframes colorChange {
-  0% {color: #4e43b5;}
-  100% {color: #ce47f0;}
 }
 .userinfo{
   display: flex;
