@@ -85,11 +85,15 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         container.innerHTML = 'Loading...';
         return;
     }
-    if (presence.activities.length === 0) {
-        container.innerHTML = 'Not doing anything right now.';
-        return;
-    }
+
+    let hasDisplayableActivity = false;
+    
     presence.activities.forEach(async (activity, index) => {
+        let isCustomStatus = activity.type === 4;
+
+        if (isCustomStatus && activity.emoji) {
+            return;
+        }
         const activityElement = document.createElement('div');
         activityElement.classList.add('activity');
         activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
@@ -98,28 +102,25 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const maxWidth = window.innerWidth <= 768 ? '100%' : 'fit-content';
         activityElement.style.maxWidth = maxWidth;
 
+        hasDisplayableActivity = true;
         let imageUrl = '/images/default.png'; 
-        let isCustomStatus = activity.type === 4;
 
-        if (isCustomStatus && activity.emoji) {
-            return;
-        } else {
-            if (activity.assets?.large_image) {
-                imageUrl = extractImageUrl(activity.assets.large_image, activity.application_id);
-            } else if (activity.assets?.small_image) {
-                imageUrl = extractImageUrl(activity.assets.small_image, activity.application_id);
-            }
 
-            const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;
-            imgElement.alt = activity.name;
-            imgElement.style.width = '60px';
-            imgElement.style.height = '60px';
-            imgElement.style.objectFit = 'cover';
-            imgElement.style.borderRadius = '10px';
-
-            activityElement.appendChild(imgElement);
+        if (activity.assets?.large_image) {
+            imageUrl = extractImageUrl(activity.assets.large_image, activity.application_id);
+        } else if (activity.assets?.small_image) {
+            imageUrl = extractImageUrl(activity.assets.small_image, activity.application_id);
         }
+
+        const imgElement = document.createElement('img');
+        imgElement.src = imageUrl;
+        imgElement.alt = activity.name;
+        imgElement.style.width = '60px';
+        imgElement.style.height = '60px';
+        imgElement.style.objectFit = 'cover';
+        imgElement.style.borderRadius = '10px';
+
+        activityElement.appendChild(imgElement);
 
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
@@ -172,6 +173,10 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
 
         container.appendChild(activityElement);
     });
+
+    if (!hasDisplayableActivity) {
+        container.innerHTML = 'Not doing anything right now.';
+    }
 };
 
 const generateNavbarHTML = (navbarData: DiscordUser): string => {
@@ -179,7 +184,7 @@ const generateNavbarHTML = (navbarData: DiscordUser): string => {
     const username = navbarData.username;
 
     return `
-        <p style="margin: 4px auto;font-weight: 600;font-size: 20px;">${displayName}<span style="color: var(--accent-gradient);"> @${username}</span></p>
+        <p style="margin: 4px auto;font-weight: 600;font-size: 20px; color: var(--color-2);">${displayName}<span style="color: var(--color-2);"> @${username}</span></p>
     `;
 };
 
