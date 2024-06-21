@@ -74,7 +74,6 @@ function extractImageUrl(url: string, application_id?: string): string {
     return url;
 }
 
-
 const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     const container = document.querySelector('.presence-container');
     if (!container) return;
@@ -274,11 +273,8 @@ const getStatusColor = (status: string): string => {
     }
 };
 
-
-
 updatePresence();
 updateNavbar();
-
 
 const updateBoth = async (): Promise<void> => {
     const presence = await fetchPresence();
