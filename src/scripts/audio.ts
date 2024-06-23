@@ -31,40 +31,35 @@ document.addEventListener("DOMContentLoaded", () => {
             source: "/audio/pinocchiop-loveit.aac"
         }
     ];
-
+    function initializeAudioContext() {
+        audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        analyzer = audioContext.createAnalyser();
+        source = audioContext.createMediaElementSource(audioPlayer);
+        source.connect(analyzer);
+        analyzer.connect(audioContext.destination);
+        analyzer.fftSize = 256;
+        const bufferLength = analyzer.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+        renderVisualizer();
+    }
     playButton.addEventListener("click", function () {
         if (audioPlayer.src) {
             audioPlayer.play();
             if (!audioContext) {
-                audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-                analyzer = audioContext.createAnalyser();
-                source = audioContext.createMediaElementSource(audioPlayer);
-                source.connect(analyzer);
-                analyzer.connect(audioContext.destination);
-                analyzer.fftSize = 256;
-                const bufferLength = analyzer.frequencyBinCount;
-                dataArray = new Uint8Array(bufferLength);
-                renderVisualizer();
+                initializeAudioContext();
             }
         } else {
             playTrack(currentTrackIndex);
         }
     });
+    
     function playTrack(index: number) {
         if (index >= 0 && index < playlist.length) {
             audioPlayer.src = playlist[index].source;
             audioPlayer.load();
             audioPlayer.play();
             if (!audioContext) {
-                audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-                analyzer = audioContext.createAnalyser();
-                source = audioContext.createMediaElementSource(audioPlayer);
-                source.connect(analyzer);
-                analyzer.connect(audioContext.destination);
-                analyzer.fftSize = 256;
-                const bufferLength = analyzer.frequencyBinCount;
-                dataArray = new Uint8Array(bufferLength);
-                renderVisualizer();
+                initializeAudioContext();
             }
             updateTrackInfo(index);
         }
@@ -119,11 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
         analyzer.getByteFrequencyData(dataArray);
         canvasContext.clearRect(0, 0, visualizer.width, visualizer.height);
         
-        const barWidth = 5;
-        const bufferLength = dataArray.length;
+        const barWidth = 6;
         const barHeightFactor = visualizer.height / 255;
     
-        for (let i = 0; i < bufferLength; i++) {
+        for (let i = 0; i < dataArray.length; i++) {
             const barHeight = dataArray[i] * barHeightFactor;
     
             const red = barHeight + 100;
