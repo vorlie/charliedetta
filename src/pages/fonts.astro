@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Vorlie | Fonts">
     <div class="main">
-        <h1 class="title">Fonts for <a href="https://github.com/pyoncord/Bunny">Bunny</a></h1>
+        <p class="header-text">Fonts for <a href="https://github.com/pyoncord/Bunny">Bunny</a></p>
         <div class="container">
             <div class="column">
                 <h2 class="title-secondary">Helvetica Neue</h2>
@@ -58,6 +58,22 @@ import Layout from '../layouts/Layout.astro';
     </div>
 </Layout>
 <style>
+    .header-text{
+        margin: 0;
+        font-size: 35px;
+        color: var(--color-text);
+        padding-bottom: 5px;
+        font-weight: 600;
+    }
+    .header-text a{
+        text-decoration: none;
+        color: var(--accent-gradient);
+        transition: 0.2s ease;
+        &:hover{
+            color: var(--color-text-hover);
+            text-decoration: underline;
+        }
+    }
     .website-preview-container{
         padding-top: 10px;
     }
@@ -91,20 +107,6 @@ import Layout from '../layouts/Layout.astro';
         padding: 0;
         margin: 0;
     }
-    .title{
-        color: var(--color-text);
-        padding: 10px;
-        margin: 0;
-    }
-    .title a{
-        text-decoration: none;
-        color: var(--accent-gradient);
-        transition: 0.2s ease;
-        &:hover{
-            color: var(--color-text-hover);
-            text-decoration: underline;
-        }
-    }
     .main {
         display: flex;
         flex-direction: column;
@@ -113,7 +115,7 @@ import Layout from '../layouts/Layout.astro';
         text-align: left;
         margin: auto;
         min-height: fit-content;
-        padding: 10px;
+        
         color: #333;
     }
     .link{
@@ -139,7 +141,6 @@ import Layout from '../layouts/Layout.astro';
         text-align: center;
         background: var(--color-main-background-secondary);
         border-radius: var(--roundness);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
     }
 
     .nested-container {

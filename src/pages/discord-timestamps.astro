@@ -2,9 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Vorlie | Discord Timestamp Generator">
-    <div class="header">
-        <h1>Discord Timestamp Generator</h1>
-    </div>
+    <p class="header-text">Discord Timestamp Generator</p>
     <div class="wrapper">
         <div class="container">
             <p>Get a dynamic date-time display in your Discord messages. Choose your time and copy the code below.</p>
@@ -30,11 +28,12 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 <script src="/src/scripts/timestamps.js"></script>
 <style>
-.header{
-    text-align: left;
-}
-.header h1{
-    color: var(--color-2);
+.header-text{
+    margin: 0;
+    font-size: 35px;
+    color: var(--color-text);
+    padding-bottom: 5px;
+    font-weight: 600;
 }
 .wrapper{
     border-radius: var(--roundness);
@@ -73,7 +72,7 @@ button {
     transition: 0.2s ease;
     outline: none;
     &:hover{
-        background: #5b3cccb9;
+        background: var(--color-main-background-secondary);
     }
 }
 
@@ -95,7 +94,7 @@ button {
     div.container>* {
         margin: 1rem 0.2rem
     }
-    .header{
+    .header-text{
         text-align: center;
     }
 }

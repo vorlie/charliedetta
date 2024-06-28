@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Vorlie | Credits">
-    <p class="header">Credits</p>
+    <p class="header-text">Credits</p>
     <p class="text">Discord Integration: <a class="link" href="https://github.com/Phineas/lanyard?tab=readme-ov-file">Lanyard by Phineas</a></p>
     <p class="text">Discord Timestamp Generator: <a class="link" href="https://r.3v.fi/discord-timestamps/">Discord Timestamps by r.3v</a></p>
     <p class="text">Website hosting: <a class="link" href="https://vercel.com/">Vercel</a></p>
@@ -15,12 +15,12 @@ import Layout from '../layouts/Layout.astro';
         <a class="link" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js">Three.js</a></p>
 </Layout>
 <style>
-    .header{
-        padding-top: 5px;
-        font-size: 30px;
+    .header-text{
+        margin: 0;
+        font-size: 35px;
+        color: var(--color-text);
+        padding-bottom: 5px;
         font-weight: 600;
-        text-align: left;
-        margin: auto;
     }
     .text{
         text-align: left;
@@ -37,7 +37,7 @@ import Layout from '../layouts/Layout.astro';
         }
     }
     @media (max-width: 768px) {
-        .header{
+        .header-text{
             text-align: center;
         }
         .text{
