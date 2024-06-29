@@ -28,6 +28,14 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
     
     presence.activities.forEach(async (activity, index) => {
         let isCustomStatus = activity.type === 4;
+        let activityDetails = activity.details ?? '';
+        let activityState = activity.state ?? '';
+        let activityName = activity.name ?? '';
+        if (activity.name.toLowerCase().includes('spotify') && presence.spotify) {
+            activityName = `Listening to ${presence.spotify.song}`;
+            activityDetails = `on ${presence.spotify.album}`;
+            activityState = `by ${presence.spotify.artist}`;
+        }
 
         if (isCustomStatus && activity.emoji) {
             return;
@@ -40,19 +48,29 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         activityElement.classList.add('activity');
         activityElement.style.backgroundColor = 'var(--color-main-background-secondary)';
         activityElement.style.borderRadius = 'var(--roundness)';
-        activityElement.style.padding = '10px';
+        activityElement.style.padding = '10px 15px';
         const maxWidth = window.innerWidth <= 768 ? '100%' : 'fit-content';
         activityElement.style.maxWidth = maxWidth;
 
         hasDisplayableActivity = true;
         let imageUrl = '/images/default.png'; 
 
-
         if (activity.assets?.large_image) {
             imageUrl = extractImageUrl(activity.assets.large_image, activity.application_id);
         } else if (activity.assets?.small_image) {
             imageUrl = extractImageUrl(activity.assets.small_image, activity.application_id);
         }
+
+        const nameElement = document.createElement('p');
+        nameElement.style.color = 'var(--accent-gradient)';
+        nameElement.style.fontSize = '20px';
+        nameElement.style.fontWeight = '600';
+        nameElement.style.margin = '2px 0';
+        nameElement.className = 'activityName';
+        nameElement.title = activityName ?? '';
+        nameElement.textContent = activityName ?? '';
+
+        activityElement.appendChild(nameElement);
 
         const imgElement = document.createElement('img');
         imgElement.src = imageUrl;
@@ -67,6 +85,8 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         const detailsElement = document.createElement('div');
         detailsElement.style.display = 'inline-block';
         detailsElement.style.marginLeft = '10px'; 
+        detailsElement.style.verticalAlign = 'top';
+
         const maxTextLength = window.innerWidth <= 768 ? 25 : 50;
         const truncateText = (text: string, maxLength: number) => {
             if (text.length > maxLength) {
@@ -74,42 +94,24 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
             }
             return text;
         }
-        let activityDetails = activity.details ?? '';
-        let activityState = activity.state ?? '';
-        let activityName = activity.name ?? '';
-        if (activity.name.toLowerCase().includes('spotify') && presence.spotify) {
-            activityName = `Listening to ${presence.spotify.song}`;
-            activityDetails = `on ${presence.spotify.album}`;
-            activityState = `by ${presence.spotify.artist}`;
 
+        if (activityDetails) {
+            const detailsTextElement = document.createElement('p');
+            detailsTextElement.style.margin = '0';
+            detailsTextElement.className = 'activityDetails';
+            detailsTextElement.title = activityDetails;
+            detailsTextElement.textContent = truncateText(activityDetails, maxTextLength);
+            detailsElement.appendChild(detailsTextElement);
         }
 
-        detailsElement.innerHTML = `
-        
-            <p 
-                style="color: var(--accent-gradient); 
-                    font-size: 20px; 
-                    font-weight: 600; 
-                    margin: 2px 0;" 
-                class="activityName" 
-                title="${activityName}">
-                ${truncateText(activityName, maxTextLength)}
-            </p>
-            ${activityDetails ? `<p 
-                style="
-                    margin: 2px;" 
-                class="activityDetails" 
-                title="${activityDetails}">
-                ${truncateText(activityDetails, maxTextLength)}</p>` : 
-                '<p style="margin: 2px;" class="activityDetails" title="N/A">N/A</p>'}
-            ${activityState ? `<p 
-                style="
-                    margin: 2px;"
-                class="activityState" 
-                title="${activityState}">
-                ${truncateText(activityState, maxTextLength)}</p>` : 
-                '<p style="margin: 2px;" class="activityState" title="N/A">N/A</p>'}
-        `;
+        if (activityState) {
+            const stateElement = document.createElement('p');
+            stateElement.style.margin = '0';
+            stateElement.className = 'activityState';
+            stateElement.title = activityState;
+            stateElement.textContent = truncateText(activityState, maxTextLength);
+            detailsElement.appendChild(stateElement);
+        }
     
         activityElement.appendChild(detailsElement);
 
@@ -120,6 +122,7 @@ const displayPresence = async (presence: LanyardData | null): Promise<void> => {
         container.innerHTML = 'Not doing anything right now.';
     }
 };
+
 
 const updatePresence = async (): Promise<void> => {
     const presence = await fetchPresence();

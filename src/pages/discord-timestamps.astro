@@ -21,7 +21,8 @@ import Layout from '../layouts/Layout.astro';
                 <option value="R" selected>relative</option>
             </select>
             <span>Output</span><span id="preview"></span>
-            <input type="text" readonly id="code" title="Press Ctrl/Cmd+C to copy"><button id="copy">Copy to clipboard</button>
+            <input type="text" readonly id="code" title="Press Ctrl/Cmd+C to copy">
+            <button id="copy">Copy to clipboard</button>
             <button id="current">Reset to current time</button>
         </div>
     </div>
@@ -64,15 +65,16 @@ import Layout from '../layouts/Layout.astro';
 input,
 select,
 button {
-    background: var(--color-1);
-    color: var(--color-2);
+    background: var(--color-main-background-secondary);
+    color: var(--color-text);
     padding: 0.3rem;
     border: 1px solid transparent;
     border-radius: 5px;
     transition: 0.2s ease;
     outline: none;
     &:hover{
-        background: var(--color-main-background-secondary);
+        background: var(--color-1);
+        color: var(--color-text-hover);
     }
 }
 

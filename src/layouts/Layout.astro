@@ -53,10 +53,10 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 <style is:global>
 	:root {
 		--accent-gradient: #EB819D;  
-		--color-background: #1f070d; 
-		--color-main: #BB4160;
-		--color-main-background: #eb819dd0;
-		--color-main-background-secondary: #EB819D80; 
+		--color-background: #101112; 
+		--color-main: #16171a;
+		--color-main-background: #202225d0;
+		--color-main-background-secondary: #20222580; 
 		--rn-background-color: #FDD5DD; 
 		--rn-background-color-2: #FEEBEA; 
 		--color-1: #EB819D; 
@@ -74,12 +74,22 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 		--status-color-idle: #faa61a; 
 		--status-color-offline: #636366; 
 	}
-
+	::selection{
+		color: var(--color-text-dark);
+		background: var(--rn-background-color-2);
+	}
+	::-moz-selection{
+		color: var(--color-text-dark);
+		background: var(--rn-background-color-2);
+	}
 	html {
 		scroll-behavior: smooth;
 		color: var(--color-text);
 		font-family: system-ui, sans-serif;
+		background: radial-gradient(circle, transparent 25%, var(--color-background)  26%),linear-gradient(45deg, transparent 46%, var(--color-main) 47%, var(--color-main) 52%, transparent 53%), linear-gradient(135deg, transparent 46%, var(--color-main) 47%, var(--color-main) 52%, transparent 53%);
+	    background-size: 3em 3em;
 		background-color: var(--color-background);
+		opacity: 1;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
